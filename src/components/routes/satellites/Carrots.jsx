@@ -4,9 +4,9 @@ import { ModelsDataContext } from "../../models/modelsContext";
 
 
 
-const SatellitesCategory = () => {
+const Carrots = () => {
   const modelsData = useContext(ModelsDataContext);
-  const satelliteCategory = modelsData.find(model => model.category === 'satellites');
+  const carrots = modelsData.find(model => model.category === 'carrots');
   const location = useLocation();
 
   return (
@@ -27,9 +27,9 @@ const SatellitesCategory = () => {
           md:flex-row
           lg:text-5xl
           lg:h-[80vh]
-          ${location.pathname.includes("/about/satellites/") ? "hidden" : ""}
+          ${location.pathname.includes("/about/carrots/") ? "hidden" : ""}
         `}>
-        {satelliteCategory.children.map(subcategory => (
+        {carrots.children.map(subcategory => (
           <li key={subcategory.subcategory}>
             <div
               className="
@@ -69,4 +69,4 @@ const SatellitesCategory = () => {
 };
 
 
-export default SatellitesCategory
+export default Carrots;

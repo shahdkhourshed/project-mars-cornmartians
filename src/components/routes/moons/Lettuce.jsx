@@ -2,9 +2,9 @@ import { useContext } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { ModelsDataContext } from "../../models/modelsContext";
 
-const MoonsCategory = () => {
+const Lettuce = () => {
   const modelsData = useContext(ModelsDataContext);
-  const moonsCategory = modelsData.find(model => model.category === 'moons');
+  const lettuceCategory = modelsData.find(model => model.category === 'lettuce');
   const location = useLocation();
 
   return (
@@ -24,10 +24,10 @@ const MoonsCategory = () => {
             md:justify-evenly
             lg:text-5xl
             lg:h-[80vh]
-            ${location.pathname.includes("/about/moons/") ? "hidden" : ""}
+            ${location.pathname.includes("/about/lettuce/") ? "hidden" : ""}
       `}>
-        {moonsCategory.children.map(moon => (
-          <li key={moon.id}>
+        {lettuceCategory.children.map(lettuce => (
+          <li key={lettuce.id}>
             <div
               className="
                 my-6
@@ -41,16 +41,16 @@ const MoonsCategory = () => {
                 parallax
               ">
               <Link
-                to={`/about/moons/${moon.id}`}
+                to={`/about/lettuce/${lettuce.id}`}
                 className="flex flex-col h-full justify-between py-12
                 ">
                 <img
-                  src={moon.cover}
-                  className={`${moon.id === "phobos" ? "lg:w-[13rem]" : "lg:w-[12.5rem] md:p-1 md:mb-0"} self-center w-[8rem] mb-2`}
+                  src={lettuce.cover}
+                  className={`${lettuce.id === "phobos" ? "lg:w-[13rem]" : "lg:w-[12.5rem] md:p-1 md:mb-0"} self-center w-[8rem] mb-2`}
                   loading="lazy"
-                  alt={moon.name} 
+                  alt={lettuce.name} 
                   />
-                <span className="blink">{moon.name}</span>
+                <span className="blink">{lettuce.name}</span>
             </Link>
             </div>
           </li>
@@ -60,5 +60,5 @@ const MoonsCategory = () => {
     </div>
   );
 };
-export default MoonsCategory;
+export default Lettuce;
 

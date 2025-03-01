@@ -1,15 +1,15 @@
 
 export const modelsData = [
     {
-        name: "Mars",
-        category: "mars",
+        name: "Corn",
+        category: "corn",
         cover: "/assets/covers/mars.webp",
         model3d: "/assets/models/mars_compressed.glb",
         children: [
             {
-                id: "mars",
-                name: "Mars",
-                category: "mars",
+                id: "corn",
+                name: "Corn",
+                category: "corn",
                 model3d: "/assets/models/mars_compressed.glb",
                 characteristics: [
                     {
@@ -160,8 +160,8 @@ export const modelsData = [
     },
     //Moons
     {
-        name: 'Moons',
-        category: 'moons',
+        name: 'Lettuce',
+        category: 'lettuce',
         cover: '/assets/covers/moons.webp',
         children: [
             {
@@ -264,8 +264,8 @@ export const modelsData = [
     },
     // Rovers
     {
-        name: 'Rovers',
-        category: 'rovers',
+        name: 'Sweet Potatoes',
+        category: 'sweet potatoes',
         cover: '/assets/covers/rovers.webp',
         children: [
             {
@@ -622,8 +622,8 @@ export const modelsData = [
     },
     // Satellites
     {
-        name: 'Satellites',
-        category: 'satellites',
+        name: 'Carrots',
+        category: 'carrots',
         cover: '/assets/covers/satellites.webp',
         children: [
             {
@@ -1634,11 +1634,11 @@ export const modelsData = [
             },
         ]
     },
-    // Missions
+    // Onions
     {
-        id: 'missions',
-        name: 'Missions',
-        category: 'missions',
+        id: 'onions',
+        name: 'Onions',
+        category: 'onions',
         cover:'/assets/covers/missions.webp',
         description: 'This is a list of the 50 spacecraft missions (including unsuccessful ones) relating to the planet Mars, such as orbiters and rovers.',
         launches_by_decade: [

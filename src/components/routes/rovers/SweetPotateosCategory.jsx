@@ -2,9 +2,9 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { ModelsDataContext } from "../../models/modelsContext";
 
-const RoversCategory = () => {
+const SweetPotatoesCategory = () => {
     const modelsData = useContext(ModelsDataContext);
-    const roverCategory = modelsData.find(model => model.category === 'rovers');
+    const sweetPotatoCategory = modelsData.find(model => model.category === 'sweet potatoes');
     const location = useLocation();
     return (
         <div className="text-center">
@@ -24,9 +24,9 @@ const RoversCategory = () => {
                     md:text-4xl
                     lg:text-5xl
                     lg:h-[80vh]
-                    ${location.pathname.includes("/about/rovers/") ? "hidden" : ""}
+                    ${location.pathname.includes("/about/sweet potatoes/") ? "hidden" : ""}
                 `}>
-                {roverCategory.children.map(subcategory => (
+                {sweetPotatoCategory.children.map(subcategory => (
                     <li key={subcategory.subcategory}>
                         <div
                             className="
@@ -59,4 +59,4 @@ const RoversCategory = () => {
     );
 };
 
-export default RoversCategory;
+export default SweetPotatoesCategory;

@@ -1,18 +1,18 @@
 import Home from "./Home";
-import About from "./About";
+import Plants from "./Plants";
 import App from "../../App";
-import Imagery from "./Imagery";
+// import Imagery from "./Imagery";
 import Weather from "./Weather";
-import Partners from "./Partners";
+// import Partners from "./Partners";
 import ErrorPage from "./ErrorPage";
-import Missions from "../routes/Missions";
-import Mars from "../routes/Mars";
+import OnionsPage from "./Onions";
+import Corn from "./Corn";
 import Moon from "../routes/moons/Moon";
 import Rover from "../routes/rovers/Rover";
 import Satellite from "../routes/satellites/Satellite";
-import MoonsCategory from "./moons/MoonsCategory";
-import RoversCategory from "./rovers/RoversCategory";
-import SatellitesCategory from "./satellites/SatellitesCategory";
+import Lettuce from "./moons/Lettuce";
+import SweetPotatoesCategory from "./rovers/SweetPotateosCategory";
+import Carrots from "./satellites/Carrots";
 import RoversSubcategory from "./rovers/RoversSubcategory";
 import SatellitesSubcategory from "./satellites/SatelliteSubcategory";
 
@@ -27,17 +27,17 @@ const routes = [{
             element: <Home />,
         },
         {
-            path: "about",
-            text: "ABOUT",
-            element: <About />,
+            path: "plants",
+            text: "PLANTS",
+            element: <Plants />,
             children: [
                 {
-                    path: 'mars',
-                    element: <Mars />
+                    path: 'corn',
+                    element: <Corn />
                 },
                 {
-                    path: 'moons',
-                    element: <MoonsCategory />,
+                    path: 'lettuce',
+                    element: <Lettuce />,
                     children: [
                         {
                             path: ':moonId',
@@ -46,8 +46,8 @@ const routes = [{
                     ]
                 },
                 {
-                    path: 'rovers',
-                    element: <RoversCategory />,
+                    path: 'sweet potatoes',
+                    element: <SweetPotatoesCategory />,
                     children: [
                         {
                             path: ':subcategory',
@@ -61,8 +61,8 @@ const routes = [{
                         }]
                 },
                 {
-                    path: 'satellites',
-                    element: <SatellitesCategory />,
+                    path: 'carrots',
+                    element: <Carrots />,
                     children: [
                         {
                             path: ':subcategory',
@@ -77,26 +77,26 @@ const routes = [{
                     ]
                 },
                 {
-                    path: 'missions',
-                    element: <Missions />,
+                    path: 'onions',
+                    element: <OnionsPage />,
                 }
             ]
         },
-        {
-            path: 'imagery',
-            text: 'IMAGERY',
-            element: <Imagery />,
-        },
+        // {
+        //     path: 'imagery',
+        //     text: 'IMAGERY',
+        //     element: <Imagery />,
+        // },
         {
             path: 'weather',
             text: 'WEATHER',
             element: <Weather />,
         },
-        {
-            path: 'partners',
-            text: 'PARTNERS',
-            element: <Partners />,
-        },
+        // {
+        //     path: 'partners',
+        //     text: 'PARTNERS',
+        //     element: <Partners />,
+        // },
     ]
 }];
 

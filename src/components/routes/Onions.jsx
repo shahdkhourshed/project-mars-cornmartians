@@ -17,12 +17,12 @@ import { useLocation } from 'react-router-dom';
 
 
 
-const MissionsPage = () => {
+const OnionsPage = () => {
   const data = useContext(ModelsDataContext);
-  const launchesByDecade = data.find((model) => model.category === 'missions').launches_by_decade;
+  const launchesByDecade = data.find((model) => model.category === 'onions').launches_by_decade;
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const location = useLocation();
-  const shouldRenderChart = location.pathname === '/about/missions';
+  const shouldRenderChart = location.pathname === '/about/onions';
 
   useEffect(() => {
     const handleResize = () => {
@@ -146,8 +146,8 @@ const MissionsPage = () => {
     </div>
   )
 
-  const Missions = () => {
-    const missions = data.find((model) => model.category === 'missions').missions;
+  const Onions = () => {
+    const onions = data.find((model) => model.category === 'onions').onions;
 
     const getColorClass = (value) => {
       if (value.toLowerCase().includes('fail')) {
@@ -173,20 +173,20 @@ const MissionsPage = () => {
         4k:grid-cols-6
         text-white
         '>
-        {missions.map((mission, index) => (
+        {onions.map((onion, index) => (
           <div key={index} className='blur__card p-10 parallax'>
-            {mission.logo && (
+            {onion.logo && (
               <div className='w-full h-[20rem]'>
                 <img
-                  src={mission.logo}
+                  src={onion.logo}
                   className='w-full h-full object-contain'
-                  alt={mission.Mission}
+                  alt={onion.Onions}
                   loading="lazy"
                 />
               </div>
             )}
             <ul key={index} className='text-[1.1rem] lg:text-[1.3rem] 4k:text-[1.4rem]'>
-              {Object.entries(mission).map(([key, value]) => {
+              {Object.entries(onion).map(([key, value]) => {
                 if (key === 'logo') {
                   return null;
                 }
@@ -194,7 +194,7 @@ const MissionsPage = () => {
                   <li key={key} className={`flex flex-col text-slate-400 font-medium`}>
                     <strong className='text-orange-500'>{key}: </strong>
                     <span className={`
-                ${key === 'Mission' ? 'font-bold italic text-[1.8rem] xl:text-center text-white' : ''}
+                ${key === 'Onion' ? 'font-bold italic text-[1.8rem] xl:text-center text-white' : ''}
                 ${key === 'Outcome' ? getColorClass(value) : ''}`}>
                       {value}
                     </span>
@@ -212,12 +212,12 @@ const MissionsPage = () => {
     <div className="flex flex-col self-center">
       {shouldRenderChart && (windowWidth > 767 ? renderAreaChart : renderLineChart)}
       <p className='font-bold text-[4rem] text-white text-center blink__word select-none my-10'>
-        Missions
+        Onions
       </p>
-      <Missions />
+      <Onions />
       <BackToTop />
     </div>
   );
 }
 
-export default MissionsPage
+export default OnionsPage;
