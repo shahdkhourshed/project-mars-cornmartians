@@ -56,7 +56,7 @@ const Home = () => {
                              font-bold
                              text-3xl
                              4k:text-[3rem]">
-              PROJECT
+              CORN
             </h2>
             <img
               src="assets/line2.svg"
@@ -69,7 +69,7 @@ const Home = () => {
                           lg:text-7xl
                           4k:text-[8rem]
                           blink__word">
-              MARS
+              MARTIAN
             </h1>
           </div>
           {/* Description */}
@@ -85,17 +85,8 @@ const Home = () => {
               xl:w-4/5
               4k:text-2xl
             ">
-            Welcome to Project Mars, your  destination for delving into the captivating world of the Red Planet. Embark on an extraordinary journey with the latest and most intriguing information about Mars, all in one place. Whether you are an avid space enthusiast or just someone curious about the cosmos, Project Mars is here to satisfy your thirst for knowledge and wonder.
+            Welcome to Corn Martian, an interactive simulation exploring the challenges and solutions of growing crops on Mars. Using real-world data and scientific principles, our platform lets you experiment with different conditions, technologies, and strategies to sustain agriculture on the Red Planet. Can you overcome Mars’ harsh environment and cultivate a thriving farm? Start your journey today!
           </p>
-        <div className="flex justify-center">
-          <button className="mt-4">
-              <Link
-                to="/about/mars"
-                className="button__style  inline-block relative">
-                <span className=''>ABOUT MARS</span>
-              </Link>
-          </button>
-        </div>
         </div>
       </div>
       <div className="z-1 flex justify-center items-center w-full max-h-[80vh]">
