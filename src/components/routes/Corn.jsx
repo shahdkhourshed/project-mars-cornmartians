@@ -14,6 +14,9 @@ const CornPage = () => {
 
   return (
     <div className="flex flex-col w-full">
+      <p className='font-bold text-[4rem] text-white text-center blink__word select-none my-10'>
+        Corn
+      </p>
       <div
         className="
           flex

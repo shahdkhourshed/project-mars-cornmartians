@@ -1,6 +1,6 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { useContext } from "react";
-import { ModelsDataContext } from "../../models/modelsContext";
+import { ModelsDataContext } from "../models/modelsContext";
 
 
 
@@ -11,6 +11,9 @@ const Carrots = () => {
 
   return (
     <div className="text-center">
+      <p className='font-bold text-[4rem] text-white text-center blink__word select-none my-10'>
+        Carrots
+      </p>
       <ul
         className={`
           my-12

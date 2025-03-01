@@ -5,16 +5,11 @@ import App from "../../App";
 import Weather from "./Weather";
 // import Partners from "./Partners";
 import ErrorPage from "./ErrorPage";
-import OnionsPage from "./Onions";
+import Onions from "../routes/Onions";
 import Corn from "./Corn";
-import Moon from "../routes/moons/Moon";
-import Rover from "../routes/rovers/Rover";
-import Satellite from "../routes/satellites/Satellite";
-import Lettuce from "./moons/Lettuce";
-import SweetPotatoesCategory from "./rovers/SweetPotateosCategory";
-import Carrots from "./satellites/Carrots";
-import RoversSubcategory from "./rovers/RoversSubcategory";
-import SatellitesSubcategory from "./satellites/SatelliteSubcategory";
+import Lettuce from "./Lettuce";
+import SweetPotatoes from "./SweetPotateos";
+import Carrots from "./Carrots";
 
 const routes = [{
     path: '/',
@@ -38,47 +33,19 @@ const routes = [{
                 {
                     path: 'lettuce',
                     element: <Lettuce />,
-                    children: [
-                        {
-                            path: ':moonId',
-                            element: <Moon />,
-                        }
-                    ]
                 },
                 {
                     path: 'sweet potatoes',
-                    element: <SweetPotatoesCategory />,
-                    children: [
-                        {
-                            path: ':subcategory',
-                            element: <RoversSubcategory />,
-                            children: [
-                                {
-                                    path: ':roverId',
-                                    element: <Rover />,
-                                },
-                            ]
-                        }]
+                    element: <SweetPotatoes />,
                 },
                 {
                     path: 'carrots',
                     element: <Carrots />,
-                    children: [
-                        {
-                            path: ':subcategory',
-                            element: <SatellitesSubcategory />,
-                            children: [
-                                {
-                                    path: ':satelliteId',
-                                    element: <Satellite />,
-                                }
-                            ],
-                        },
-                    ]
+                    
                 },
                 {
                     path: 'onions',
-                    element: <OnionsPage />,
+                    element: <Onions />,
                 }
             ]
         },
