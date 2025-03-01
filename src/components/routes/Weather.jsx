@@ -7,7 +7,7 @@ import sunrise from '/assets/weather/sunrise.svg';
 import sunset from '/assets/weather/sunset.svg';
 import thermometer_colder from '/assets/weather/thermometer_colder.svg';
 import thermometer_warmer from '/assets/weather/thermometer_warmer.svg';
-
+import axios from "axios";
 
 const WeatherCard = ({ weather, index }) => {
   const weatherItems = [
@@ -59,7 +59,7 @@ const WeatherCard = ({ weather, index }) => {
       window.removeEventListener('resize', handleResize);
     };
   })
-
+  
   return (
     <div
       key={index}
@@ -115,44 +115,20 @@ const Weather = () => {
   const [loading, setLoading] = useState(true);
   // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState(false);
-  const [weatherData, setWeatherData] = useState();
-
-
-  // Function to store data in localStorage with a timestamp
-  function storeDataInLocalStorage(data) {
-    const currentTime = new Date().getTime();
-    const dataToStore = {
-      data: data,
-      timestamp: currentTime,
-    };
-    localStorage.setItem('weatherData', JSON.stringify(dataToStore));
-  }
-
-  // Function to retrieve and check data from localStorage
-  function getAndCheckDataFromLocalStorage() {
-    const storedData = localStorage.getItem('weatherData');
-    if (storedData) {
-      const parsedData = JSON.parse(storedData);
-      const { data, timestamp } = parsedData;
-      const currentTime = new Date().getTime();
-      const expirationTime = 24 * 60 * 60 * 1000; // 24 hours
-
-      if (currentTime - timestamp <= expirationTime) {
-        // The data is still valid (less than 24 hours)
-        return data;
-      }
-    }
-    // Data is either not in localStorage or has expired
-    return null;
-  }
+  const [weatherData, setWeatherData] = useState({});
+  console.log("gold");
 
   useEffect(() => {
-    const fetchDataAndStore = async () => {
+    const getweather = async () => {
       try {
-        const data = await fetch("api/scraper").then(res => res.json());
-        console.log(data);
-        setWeatherData(data);
-        storeDataInLocalStorage(data); // Store the fresh data in localStorage
+        console.log("gold");
+        const API_KEY = '3gdaS7EfzvN0wGfCVqKhm8atgymXVO7BSi2s0Hnq';
+        const PRnewdata = await axios.get(`https://api.nasa.gov/insight_weather/?api_key=${API_KEY}&feedtype=json&ver=1.0`);
+        // const data = await fetch("api/scraper").then(res => res.json());
+        const newdata = PRnewdata.data;
+        console.log(newdata);
+        setWeatherData(newdata);
+        storeDataInLocalStorage(newdata); // Store the fresh data in localStorage
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -160,16 +136,15 @@ const Weather = () => {
       }
     };
 
-
     // First, try to get data from localStorage
-    let weatherData = getAndCheckDataFromLocalStorage();
+    let weatherData;
 
     if (!weatherData) {
       // Data is not available or has expired, fetch it
-      fetchDataAndStore();
+      getweather();
     } else {
       // Data is available in localStorage, use it
-      setWeatherData(weatherData);
+      setWeatherData(newdata);
       setLoading(false);
     }
   }, []);
@@ -191,11 +166,6 @@ const Weather = () => {
               <Link to="/about/rovers/active/curiosity" className='text-orange-500 font-bold blink'>Curiosity </Link>
               is taking daily weather measurements at Gale Crater in the southern hemisphere of Mars, near the equator.
             </p>
-          </div>
-          <div className='flex flex-col lg:grid lg:grid-cols-2 xl:grid-cols-4 4k:grid-cols-7'>
-              {weatherData.map((item, index) => (
-              <WeatherCard key={index} weather={item} index={index} />
-            ))}
           </div>
         </div>
       )}
