@@ -193,13 +193,22 @@ export const modelsData = [
             }
         ],
     },
-    // Satellites
+    // Carrots
     {
         name: 'Carrots',
         category: 'carrots',
         cover: '/assets/covers/carrot.webp',
+        model3d: "/assets/models/Carrot.glb",
         children: [
-            
+            {
+                id: "carrots",
+                name: "Carrots",
+                category: "carrots",
+                model3d: "/assets/models/Carrot.glb",
+                characteristics: [
+
+                ]
+            }
         ]
     },
     // Onions
