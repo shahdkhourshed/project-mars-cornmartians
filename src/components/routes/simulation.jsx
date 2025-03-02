@@ -20,6 +20,8 @@ export default class Simulation extends Component {
   health_bar = 100;
   plants_harvested = { carrot: 0, corn: 0, lettuce: 0, onion: 0, sweetPotato: 0 };
   water = 0;
+  lastSolUpdate = 0;
+  sols = 0;
   
   // Rover Properties
   roverSize = 200;
@@ -31,7 +33,6 @@ export default class Simulation extends Component {
   setup = (p5, parent) => {
     p5.createCanvas(this.gridSize * this.tileSize, this.gridSize * this.tileSize).parent(parent);
     this.backgroundImg = p5.loadImage(backgroundImage);
-
     this.images = {
       carrot: p5.loadImage(carrotEmoji),
       corn: p5.loadImage(cornEmoji),
@@ -48,9 +49,14 @@ export default class Simulation extends Component {
       }
       this.grid.push(row);
     }
+    this.lastSolUpdate = p5.millis();
   };
 
   draw = (p5) => {
+    if (p5.millis() - this.lastSolUpdate >= 1000) {
+      this.sols += 1; // Increment sols by 1
+      this.lastSolUpdate = p5.millis(); // Reset the last update time
+    }
     if (this.backgroundImg) {
       p5.image(this.backgroundImg, 0, 0, p5.width, p5.height);
     } else {
@@ -95,7 +101,7 @@ export default class Simulation extends Component {
         }
       }
     }
-
+   
     // Draw Rover if it's moving
     if (this.roverMoving) {
       p5.image(this.images.rover, this.roverX, this.roverY, this.roverSize, this.roverSize * 0.6);
@@ -106,7 +112,7 @@ export default class Simulation extends Component {
     p5.textSize(16);
     p5.textAlign(p5.CENTER, p5.CENTER);
     p5.text(`Action: ${this.currentAction}`, p5.width / 2, p5.height - 20);
-    p5.text(`Water: ${this.water} gallons`, p5.width / 2, p5.height - 40);
+    p5.text(`Water: ${this.water} gallons, Total Sols: ${this.sols}`, p5.width / 2, p5.height - 40);
   };
 
   mousePressed = (p5) => {
@@ -169,11 +175,13 @@ export default class Simulation extends Component {
 
   selectCrop = (crop) => {
     this.selectedCrop = crop;
+    console.log(this.sols);
   };
 
   render() {
     return (
       <div className="flex flex-col items-center">
+        <label className="text-white">Num of sols:{this.sols}</label>
         <Sketch setup={this.setup} draw={this.draw} mousePressed={this.mousePressed} keyPressed={this.keyPressed} />
         <div className="flex gap-4 mt-4">
           <button onClick={() => this.selectCrop("carrot")}><img src={carrotEmoji} alt="Carrot" width="50" /></button>
