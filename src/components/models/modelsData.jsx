@@ -219,7 +219,22 @@ export const modelsData = [
             { decade: "2020s", launches: 3 }
         ],
         onions: [
-        ]
+        ],
+        details: {
+            scientificName: "Allium cepa",
+            family: "Amaryllidaceae",
+            type: "Bulb vegetable",
+            colorVarieties: ["Yellow", "Red", "White", "Green (scallions)"],
+            taste: "Ranges from sweet to pungent",
+            nutritionalValue: "Low in calories, high in vitamin C, fiber, and antioxidants",
+            healthBenefits: [
+                "Supports heart health",
+                "Boosts immunity",
+                "Has anti-inflammatory properties"
+            ],
+            storage: "Store whole onions in a cool, dry, well-ventilated place; cut onions should be refrigerated",
+            funFact: "Onions can make you cry due to sulfur compounds released when cut"
+        }
     }
 
 ]

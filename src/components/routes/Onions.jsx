@@ -15,11 +15,11 @@ import { ModelsDataContext } from "../models/modelsContext";
 import BackToTop from '../BackToTop';
 import { useLocation } from 'react-router-dom';
 
-
-
 const OnionsPage = () => {
   const data = useContext(ModelsDataContext);
-  const launchesByDecade = data.find((model) => model.category === 'onions').launches_by_decade;
+  const onionData = data.find((model) => model.category === 'onions');
+  const launchesByDecade = onionData.launches_by_decade;
+  const details = onionData.details;
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const location = useLocation();
   const shouldRenderChart = location.pathname === '/about/onions';
@@ -208,12 +208,30 @@ const OnionsPage = () => {
     )
   };
 
+  const OnionDetails = () => (
+    <div className="text-white p-8">
+      <h2 className="text-2xl font-bold mb-4">Onion Details</h2>
+      <ul className="list-disc list-inside">
+        <li><strong>Scientific Name:</strong> {details.scientificName}</li>
+        <li><strong>Family:</strong> {details.family}</li>
+        <li><strong>Type:</strong> {details.type}</li>
+        <li><strong>Color Varieties:</strong> {details.colorVarieties.join(', ')}</li>
+        <li><strong>Taste:</strong> {details.taste}</li>
+        <li><strong>Nutritional Value:</strong> {details.nutritionalValue}</li>
+        <li><strong>Health Benefits:</strong> {details.healthBenefits.join(', ')}</li>
+        <li><strong>Storage:</strong> {details.storage}</li>
+        <li><strong>Fun Fact:</strong> {details.funFact}</li>
+      </ul>
+    </div>
+  );
+
   return (
     <div className="flex flex-col self-center">
       {shouldRenderChart && (windowWidth > 767 ? renderAreaChart : renderLineChart)}
       <p className='font-bold text-[4rem] text-white text-center blink__word select-none my-10'>
         Onions
       </p>
+      <OnionDetails />
       <Onions />
       <BackToTop />
     </div>
