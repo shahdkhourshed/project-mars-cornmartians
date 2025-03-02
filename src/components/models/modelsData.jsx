@@ -82,6 +82,21 @@ export const modelsData = [
                 ]
             }
         ],
+        details: {
+            scientificName: "Ipomoea batatas",
+            family: "Convolvulaceae (morning glory family)",
+            type: "Root vegetable",
+            colorVarieties: ["Orange", "Purple", "White", "Yellow"],
+            taste: "Sweet and earthy",
+            nutritionalValue: "Rich in fiber, vitamin A (beta-carotene), vitamin C, and potassium",
+            healthBenefits: [
+                "Supports vision",
+                "Boosts immunity",
+                "Regulates blood sugar"
+            ],
+            storage: "Store in a cool, dry place; avoid refrigeration, as cold temperatures can alter taste and texture",
+            funFact: "Despite common confusion, sweet potatoes and yams are not the same—yams belong to a different plant family"
+        }
     },
     // Carrots
     {
@@ -99,7 +114,22 @@ export const modelsData = [
 
                 ]
             }
-        ]
+        ],
+        details: {
+            scientificName: "Daucus carota",
+            family: "Apiaceae (parsley family)",
+            type: "Root vegetable",
+            colorVarieties: ["Orange", "Purple", "Red", "Yellow", "White"],
+            taste: "Mildly sweet and earthy",
+            nutritionalValue: "High in beta-carotene (vitamin A), fiber, and vitamin K",
+            healthBenefits: [
+                "Supports eye health",
+                "Promotes skin health",
+                "Aids digestion"
+            ],
+            storage: "Store in the refrigerator in a plastic bag; keep away from ethylene-producing fruits to prevent spoilage",
+            funFact: "The original cultivated carrots were purple, yellow, or white—orange carrots became popular in the 17th century"
+        }
     },
     // Onions
     {
