@@ -16,7 +16,8 @@ export default class Simulation extends Component {
   crops = {};
   images = {}; // Store crop images
   backgroundImg = null;
-  health_bar = 0;
+  health_bar = 100;
+  plants_harvested = {"carrot": 0, "corn": 0, "lettuce": 0, "onion": 0, "sweetPotato": 0};
 
   setup = (p5, parent) => {
     console.log("gold");
@@ -118,16 +119,22 @@ export default class Simulation extends Component {
         // Harvest only if the crop is fully grown
         if (this.grid[i][j].type == "carrot"){
           this.health_bar+= 2;
+          this.plants_harvested.carrot++;
         }else if(this.grid[i][j].type == "corn"){
           this.health_bar += 0;
-        }else if(this.grid[i][j].type == "sweetPotato"){
-          this.health_bar += 3;
+          this.plants_harvested.corn++;
         }else if(this.grid[i][j].type == "onion"){
+          this.health_bar += 3;
+          this.plants_harvested.onion++;
+        }else if(this.grid[i][j].type == "sweetPotato"){
           this.health_bar += 2;
+          this.plants_harvested.sweetPotato++;
         }else if(this.grid[i][j].type == "lettuce"){
           this.health_bar += 3;
+          this.plants_harvested.lettuce++;
         }
         console.log(this.health_bar);
+        console.log(this.plants_harvested);
         this.grid[i][j] = null;
       }
     }
@@ -147,18 +154,23 @@ export default class Simulation extends Component {
 
   render() {
     return (
-      <div className="flex flex-col items-center">
-        <Sketch setup={this.setup} draw={this.draw} mousePressed={this.mousePressed} keyPressed={this.keyPressed} />
+      //<div className="flex flex-row items-center gap-1">
+        <div className="flex flex-col items-center">
+          <Sketch setup={this.setup} draw={this.draw} mousePressed={this.mousePressed} keyPressed={this.keyPressed} />
 
-        {/* Crop Selection Buttons */}
-        <div className="flex gap-4 mt-4">
-          <button onClick={() => this.selectCrop("carrot")}><img src={carrotEmoji} alt="Carrot" width="50" /></button>
-          <button onClick={() => this.selectCrop("corn")}><img src={cornEmoji} alt="Corn" width="50" /></button>
-          <button onClick={() => this.selectCrop("lettuce")}><img src={lettuceEmoji} alt="Lettuce" width="50" /></button>
-          <button onClick={() => this.selectCrop("onion")}><img src={onionEmoji} alt="Onion" width="50" /></button>
-          <button onClick={() => this.selectCrop("sweetPotato")}><img src={sweetPotatoEmoji} alt="Sweet Potato" width="50" /></button>
-        </div>
+          {/* Crop Selection Buttons */}
+          <div className="flex gap-4 mt-4">
+            <button onClick={() => this.selectCrop("carrot")}><img src={carrotEmoji} alt="Carrot" width="50" /></button>
+            <button onClick={() => this.selectCrop("corn")}><img src={cornEmoji} alt="Corn" width="50" /></button>
+            <button onClick={() => this.selectCrop("lettuce")}><img src={lettuceEmoji} alt="Lettuce" width="50" /></button>
+            <button onClick={() => this.selectCrop("onion")}><img src={onionEmoji} alt="Onion" width="50" /></button>
+            <button onClick={() => this.selectCrop("sweetPotato")}><img src={sweetPotatoEmoji} alt="Sweet Potato" width="50" /></button>
+          </div>
       </div>
+      /* <div className="flex flex-col">
+        <label>Number of carrots:{this.plants_harvested.carrots}</label>
+      </div> */
+    //</div>
     );
   }
 }
