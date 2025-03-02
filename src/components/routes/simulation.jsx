@@ -1,4 +1,3 @@
-// simulation.jsx
 import React, { Component } from "react";
 import Sketch from "react-p5";
 import backgroundImage from "./red_mars_sand.webp"; // Ensure this path is correct
@@ -13,7 +12,9 @@ export default class Simulation extends Component {
   tileSize = 100;
   grid = [];
   currentAction = "plant"; // Available actions: plant, water, harvest
-  crops = [];
+  selectedCrop = "carrot"; // Default selected crop
+  crops = {};
+  images = {}; // Store crop images
   backgroundImg = null;
 
   setup = (p5, parent) => {
@@ -22,30 +23,26 @@ export default class Simulation extends Component {
 
     // Load background image
     this.backgroundImg = p5.loadImage(backgroundImage);
-    this.lettuce = p5.loadImage(lettuceEmoji);
-    this.onion = p5.loadImage(onionEmoji);
-    this.sweetPotato = p5.loadImage(sweetPotatoEmoji);
-    this.corn = p5.loadImage(cornEmoji);
-    this.carrot = p5.loadImage(carrotEmoji);
+
+    // Load crop images
+    this.images = {
+      carrot: p5.loadImage(carrotEmoji),
+      corn: p5.loadImage(cornEmoji),
+      lettuce: p5.loadImage(lettuceEmoji),
+      onion: p5.loadImage(onionEmoji),
+      sweetPotato: p5.loadImage(sweetPotatoEmoji),
+    };
 
     // Initialize the grid with empty tiles
-    for (let i = 0; i < this.gridSize; i++){
+    for (let i = 0; i < this.gridSize; i++) {
       let row = [];
       for (let j = 0; j < this.gridSize; j++) {
         row.push(null);  // No crop in this tile initially
       }
       this.grid.push(row);
     }
+  };
 
-    // Define different crop types
-    this.crops = {
-      carrot: {
-        stages: 3, // Number of growth stages (0: seed, 1: growing, 2: mature)
-        growthRate: 0.01, // Rate at which the plant grows per frame
-        color: p5.color(255, 165, 0) // Carrot's color when mature
-      }
-    };
-  }
   draw = (p5) => {
     // Draw background image
     if (this.backgroundImg) {
@@ -62,21 +59,28 @@ export default class Simulation extends Component {
         p5.noFill();
         p5.rect(i * this.tileSize, j * this.tileSize, this.tileSize, this.tileSize);
 
-        // Draw the crop if there is one
         let crop = this.grid[i][j];
         if (crop) {
-          p5.fill(crop.growthStage === 3 ? crop.type.color : p5.color(0, 255, 0)); // Full growth or growing plant
-          p5.ellipse(i * this.tileSize + this.tileSize / 2, j * this.tileSize + this.tileSize / 2, this.tileSize / 2, this.tileSize / 2);
-
-          // Grow the plant if it's not fully grown
-          if (crop.growthStage < 3) {
-            crop.growthProgress += crop.type.growthRate;
+          // Grow the crop over time
+          if (crop.growthStage < 2) {
+            crop.growthProgress += 0.01; // Increment growth progress
             if (crop.growthProgress >= 1) {
               crop.growthStage++;
               crop.growthProgress = 0;
             }
           }
-       }
+
+          // Draw crop image based on growth stage
+          let cropImage = this.images[crop.type];
+          if (cropImage) {
+            let size = this.tileSize * (0.4 + 0.3 * crop.growthStage); // Scale size based on growth
+            p5.image(cropImage, i * this.tileSize + (this.tileSize - size) / 2, j * this.tileSize + (this.tileSize - size) / 2, size, size);
+          } else {
+            // Placeholder orange dot for crop growth
+            p5.fill(crop.growthStage === 2 ? 255 : 165, crop.growthStage === 2 ? 165 : 0, 0);
+            p5.ellipse(i * this.tileSize + this.tileSize / 2, j * this.tileSize + this.tileSize / 2, this.tileSize / 2);
+          }
+        }
       }
     }
 
@@ -95,18 +99,15 @@ export default class Simulation extends Component {
     if (i >= 0 && i < this.gridSize && j >= 0 && j < this.gridSize) {
       let crop = this.grid[i][j];
       if (this.currentAction === "plant" && !crop) {
-        // Plant a seed
+        // Plant the selected crop with initial growth state
         this.grid[i][j] = {
-          type: this.crops.carrot,
+          type: this.selectedCrop,
           growthStage: 0, // Start as a seed
           growthProgress: 0 // Initial growth progress
         };
-      } else if (this.currentAction === "water" && crop && crop.growthStage < 2) {
-        // Water the plant (accelerates growth)
-        crop.growthProgress += 0.5; // Water speeds up growth
       } else if (this.currentAction === "harvest" && crop && crop.growthStage === 2) {
-        // Harvest the crop (only if fully grown)
-       this.grid[i][j] = null;
+        // Harvest only if the crop is fully grown
+        this.grid[i][j] = null;
       }
     }
   };
@@ -119,10 +120,23 @@ export default class Simulation extends Component {
     }
   };
 
+  selectCrop = (crop) => {
+    this.selectedCrop = crop;
+  };
+
   render() {
     return (
       <div className="flex flex-col items-center">
         <Sketch setup={this.setup} draw={this.draw} mousePressed={this.mousePressed} keyPressed={this.keyPressed} />
+
+        {/* Crop Selection Buttons */}
+        <div className="flex gap-4 mt-4">
+          <button onClick={() => this.selectCrop("carrot")}><img src={carrotEmoji} alt="Carrot" width="50" /></button>
+          <button onClick={() => this.selectCrop("corn")}><img src={cornEmoji} alt="Corn" width="50" /></button>
+          <button onClick={() => this.selectCrop("lettuce")}><img src={lettuceEmoji} alt="Lettuce" width="50" /></button>
+          <button onClick={() => this.selectCrop("onion")}><img src={onionEmoji} alt="Onion" width="50" /></button>
+          <button onClick={() => this.selectCrop("sweetPotato")}><img src={sweetPotatoEmoji} alt="Sweet Potato" width="50" /></button>
+        </div>
       </div>
     );
   }
