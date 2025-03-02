@@ -257,6 +257,7 @@ export default class Simulation extends Component {
             <li>Press "1" on your keyboard and plant the crops by clicking on the boxes.</li>
             <li>Press "2" on your keyboard to water the plant.</li>
             <li>When the plant is watered enough, press "3" to harvest it.</li>
+            <li>If the plant isn't harvested quickly, the plant will wilt.</li>
             <li>Harvest 7 plants total to win.</li>
           </ol>
         </div>
