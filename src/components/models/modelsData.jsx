@@ -1,5 +1,6 @@
 
 export const modelsData = [
+    // Corn
     {
         name: "Corn",
         category: "corn",
@@ -12,153 +13,27 @@ export const modelsData = [
                 category: "corn",
                 model3d: "/assets/models/Corn.glb",
                 characteristics: [
-                    {
-                        "Orbital Characteristics": {
-                            "Aphelion": {
-                                "km": "249261000 km",
-                                "mi": "154884000 mi",
-                                "AU": "1.66621 AU"
-                            },
-                            "Perihelion": {
-                                "km": "206650000 km",
-                                "mi": "128410000",
-                                "AU": "1.3814 AU"
-                            },
-                            "Semi-major Axis": {
-                                "km": "227939366 km",
-                                "mi": "141634956 mi",
-                                "AU": "1.52368055 AU"
-                            },
-                            "Eccentricity": 0.0934,
-                            "Orbital Period (Sidereal)": {
-                                "Days": "686.980 days",
-                                "Years": "1.88085 years",
-                                "Sols": "668.5991 sols"
-                            },
-                            "Orbital Period (Synodic)": {
-                                "Days": "779.94 days",
-                                "Years": "2.1354 years"
-                            },
-                            "Average Orbital Speed": {
-                                "kmPerSec": "24.07 km/s",
-                                "kmPerHour": "86700 km/h",
-                                "mph": "53800 mph"
-                            },
-                            "Mean Anomaly": "19.412°",
-                            "Inclination": {
-                                "To Ecliptic": "1.850°",
-                                "To Sun Equator": "5.65°",
-                                "To Invariable Plane": "1.63°"
-                            },
-                            "Longitude of Ascending Node": "49.57854°",
-                            "Time of Perihelion": "2022-Jun-21",
-                            "Argument of Perihelion": "286.5°",
-                            "Satellites": 2
-                        },
-                        "Physical Characteristics": {
-                            "Mean Radius": {
-                                "km": "3389.5 ± 0.2 km",
-                                "mi": "2106.1 ± 0.1 mi"
-                            },
-                            "Equatorial Radius": {
-                                "km": "3396.2 ± 0.1 km",
-                                "mi": "2110.3 ± 0.1 mi",
-                                "Earths": "0.533 Earths"
-                            },
-                            "Polar Radius": {
-                                "km": "3376.2 ± 0.1 km",
-                                "mi": "2097.9 ± 0.1 mi",
-                                "Earths": "0.531 Earths"
-                            },
-                            "Flattening": 0.00589,
-                            "Surface Area": {
-                                "km2": "144.37×106 km2",
-                                "sqMi": "5.574×107 sq mi",
-                                "Earths": "0.284 Earths"
-                            },
-                            "Volume": {
-                                "km3": "1.63118×1011 km3",
-                                "Earths": "0.151 Earths"
-                            },
-                            "Mass": {
-                                "kg": "6.4171×1023 kg",
-                                "Earths": "0.107 Earths"
-                            },
-                            "Mean Density": {
-                                "gPerCm3": "3.9335 g/cm3",
-                                "lbPerCuIn": "0.1421 lb/cu in"
-                            },
-                            "Surface Gravity": {
-                                "mPerS2": "3.72076 m/s2",
-                                "ftPerS2": "12.2072 ft/s2",
-                                "g": "0.3794 g"
-                            },
-                            "Moment of Inertia Factor": 0.3644,
-                            "Escape Velocity": {
-                                "kmPerS": "5.027 km/s",
-                                "kmPerH": "18100 km/h",
-                                "mph": "11250 mph"
-                            },
-                            "Synodic Rotation Period": {
-                                "Days": "1.02749125 d",
-                                "Time": "24h 39m 36s"
-                            },
-                            "Sidereal Rotation Period": {
-                                "Days": "1.025957 d",
-                                "Time": "24h 37m 22.7s"
-                            },
-                            "Equatorial Rotation Velocity": {
-                                "mPerS": "241 m/s",
-                                "kmPerH": "870 km/h",
-                                "mph": "540 mph"
-                            },
-                            
-                            "Axial Tilt": {
-                                "Degrees": "25.19° to its orbital plane"
-                            },
-                            "North Pole Right Ascension": {
-                                "Degrees": "317.68143°",
-                                "Time": "21h 10m 44s"
-                            },
-                            "North Pole Declination": "52.88650°",
-                            "Albedo": {
-                                "Geometric": 0.170,
-                                "Bond": 0.25
-                            },
-                            "Temperature": {
-                                "Blackbody": "−64°C",
-                                "Surface": {
-                                    "Min": "−110°C",
-                                    "Mean": "−60°C",
-                                    "Max": "35°C"
-                                }
-                            },
-                            "Surface Absorbed Dose Rate": "8.8 μGy/h",
-                            "Surface Equivalent Dose Rate": "27 μSv/h",
-                            "Apparent Magnitude": "−2.94 to +1.86",
-                            "Absolute Magnitude": "−1.5",
-                            "Angular Diameter": "3.5–25.1″"
-                        },
-                        "Atmosphere": {
-                            "Surface Pressure": {
-                                "kPa": "0.636 kPa",
-                                "atm": "0.00628 atm"
-                            },
-                            "Composition by Volume": {
-                                "Carbon Dioxide": "95.97%",
-                                "Argon": "1.93%",
-                                "Nitrogen": "1.89%",
-                                "Oxygen": "0.146%",
-                                "Carbon Monoxide": "0.0557%",
-                                "Water Vapor": "0.0210%"
-                            }
-                        }
-                    }
+                    
                 ]
             }
-        ]
+        ],
+        details: {
+            scientificName: "Zea mays",
+            family: "Poaceae (grass family)",
+            type: "Cereal grain, but often classified as a vegetable when eaten fresh",
+            colorVarieties: ["Yellow", "White", "Red", "Blue", "Purple", "Multicolored"],
+            taste: "Sweet and starchy",
+            nutritionalValue: "High in carbohydrates, fiber, and some B vitamins",
+            healthBenefits: [
+                "Supports digestion",
+                "Provides antioxidants",
+                "Is a good energy source"
+            ],
+            storage: "Store whole ears in the refrigerator; dried kernels should be kept in an airtight container",
+            funFact: "Corn is one of the vegetables that can NOT grow on Mars"
+        }
     },
-    //Moons
+    // Lettuce
     {   name: 'Lettuce',
         category: 'lettuce',
         cover: '/assets/covers/lettuce.webp',
@@ -174,6 +49,21 @@ export const modelsData = [
                 ]
             }
         ],
+        details: {
+            scientificName: "Lactuca sativa",
+            family: "Asteraceae (daisy family)",
+            type: "Leafy green vegetable",
+            colorVarieties: ["Green", "Red", "Purple"],
+            taste: "Mild and slightly bitter (depending on variety)",
+            nutritionalValue: "Low in calories, contains vitamin K, folate, and fiber",
+            healthBenefits: [
+                "Supports digestion",
+                "Helps with hydration",
+                "Provides antioxidants"
+            ],
+            storage: "Store in the refrigerator in a plastic bag or container with paper towels to absorb moisture",
+            funFact: "Lettuce was first cultivated by the ancient Egyptians over 4,000 years ago"
+        }
     },
     // Sweet Potatoes
     {
