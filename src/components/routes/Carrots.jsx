@@ -3,7 +3,7 @@ import { useFetchData } from "../hooks/useFetchData";
 import Model3D from "../models/Model3D";
 
 const CarrotPage = () => {
-  const carrot = useFetchData('carrot', "", 'carrot');
+  const carrot = useFetchData('carrots', "", 'carrots');
   const chars = carrot.characteristics;
 
   if (!carrot) {
@@ -24,7 +24,7 @@ const CarrotPage = () => {
             text-white
             xl:flex-row-reverse
         ">
-        <Model3D key={carrot.model3d} modelPath={carrot.model3d} initialScale={40} cameraPosition={[16, -40, 180]} /> 
+        <Model3D key={carrot.model3d} modelPath={carrot.model3d} initialScale={5} cameraPosition={[16, -40, 180]} /> 
         <Characteristics data={chars} />
       </div>
     </div>
