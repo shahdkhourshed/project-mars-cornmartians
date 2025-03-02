@@ -16,6 +16,7 @@ export default class Simulation extends Component {
   crops = {};
   images = {}; // Store crop images
   backgroundImg = null;
+  health_bar = 0;
 
   setup = (p5, parent) => {
     console.log("gold");
@@ -115,6 +116,18 @@ export default class Simulation extends Component {
         };
       } else if (this.currentAction === "harvest" && crop && crop.growthStage === 2) {
         // Harvest only if the crop is fully grown
+        if (this.grid[i][j].type == "carrot"){
+          this.health_bar+= 2;
+        }else if(this.grid[i][j].type == "corn"){
+          this.health_bar += 0;
+        }else if(this.grid[i][j].type == "sweetPotato"){
+          this.health_bar += 3;
+        }else if(this.grid[i][j].type == "onion"){
+          this.health_bar += 2;
+        }else if(this.grid[i][j].type == "lettuce"){
+          this.health_bar += 3;
+        }
+        console.log(this.health_bar);
         this.grid[i][j] = null;
       }
     }
