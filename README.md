@@ -23,14 +23,12 @@ By immersing players in the challenges of cultivating crops on Mars, Corn Martia
 - **Recharts:** Utilized for creating interactive charts and visualizations.
 - **Three.js:** To incorporate 3D models and enhance the user experience.
 - **Vite:** As a fast build tool for the frontend development stack.
-
-<h3>Simulation Development</h3>
 - **p5.js:** The simulation was developed using the p5.js framework for easy animation and interactivity.  
 
 <h3>Design and Styling</h3>
 
 - **Tailwind CSS:** Employed for styling, ensuring a modern and visually appealing design.
-- **Figma/Adobe Illustrator:** Custom-created and/or edited assets and illustrations to enhance the project's aesthetics.
+- **Microsoft Co-pilot:** AI-generated images of the vegetable astronauts.
 - **Draco3D:** Used for compressing 3D models to improve loading times.
 
 

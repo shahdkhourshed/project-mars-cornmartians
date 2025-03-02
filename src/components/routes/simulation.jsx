@@ -15,6 +15,13 @@ async function disasterText() {
 }
 
 export default class Simulation extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      totalPlantsHarvested: 0, // New state variable to track total plants harvested
+    };
+  }
+
   gridSize = 5;
   tileSize = 100;
   grid = [];
@@ -184,6 +191,9 @@ export default class Simulation extends Component {
       } else if (this.currentAction === "harvest" && crop && crop.growthStage === 2) {
         this.health_bar += this.getHealthBoost(crop.type);
         this.plants_harvested[crop.type]++;
+        this.setState((prevState) => ({
+          totalPlantsHarvested: prevState.totalPlantsHarvested + 1, // Increment total plants harvested
+        }));
         this.grid[i][j] = null;
       } else if (this.currentAction === "water" && crop && crop.growthStage < 2 && this.water > 0) {
         crop.growthStage++;
@@ -258,6 +268,9 @@ export default class Simulation extends Component {
             <button onClick={() => this.selectCrop("sweetPotato")}><img src={sweetPotatoEmoji} alt="Sweet Potato" width="50" /></button>
           </div>
           <button onClick={this.fetchWater} className="mt-4 p-2 bg-blue-500 text-white rounded">Fetch Water</button>
+          <div className="mt-4" style={{ color: "white" }}>
+            Total Plants Harvested: {this.state.totalPlantsHarvested}
+          </div>
         </div>
       </div>
     );
