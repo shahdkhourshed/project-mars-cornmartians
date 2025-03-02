@@ -98,16 +98,17 @@ export default class Simulation extends Component {
   
     if(this.sols >= 14 || this.state.totalPlantsHarvested >= 7){
       this.stopAnimSolLim = true;
-      p5.fill(255,255,255);
+      // p5.fill(255,255,255);
+      p5.image(this.backgroundImg, 0, 0, p5.width + 1, p5.height);
       p5.noStroke();
       p5.textSize(16);
       p5.textAlign(p5.CENTER, p5.CENTER);
       if (this.state.totalPlantsHarvested >= 7) {
         p5.text("You harvested enough crops to survive!", p5.width / 2, p5.height / 2);
-        p5.text(`You harvested ${this.plants_harvested.carrot} carrots, ${this.plants_harvested.corn} corns, ${this.plants_harvested.lettuce} lettuce, ${this.plants_harvested.onion} onions, and ${this.plants_harvested.sweetPotato} sweet potatoes.`, p5.width / 2, p5.height / 2 + 20);
+        p5.text(`Harvested ${this.plants_harvested.carrot} carrots, ${this.plants_harvested.corn} corns, ${this.plants_harvested.lettuce} lettuce, ${this.plants_harvested.onion} onions, ${this.plants_harvested.sweetPotato} sweet potatoes.`, p5.width / 2, p5.height / 2 + 20);
       } else {
         p5.text("Game over! You weren't able to harvest enough crops to survive 14 sols.", p5.width / 2, p5.height / 2);
-        p5.text(`You harvested ${this.plants_harvested.carrot} carrots, ${this.plants_harvested.corn} corns, ${this.plants_harvested.lettuce} lettuce, ${this.plants_harvested.onion} onions, and ${this.plants_harvested.sweetPotato} sweet potatoes.`, p5.width / 2, p5.height / 2 + 20);
+        p5.text(`Harvested ${this.plants_harvested.carrot} carrots, ${this.plants_harvested.corn} corns, ${this.plants_harvested.lettuce} lettuce, ${this.plants_harvested.onion} onions, ${this.plants_harvested.sweetPotato} sweet potatoes.`, p5.width / 2, p5.height / 2 + 20);
       }
       
       return;
