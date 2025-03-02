@@ -22,6 +22,7 @@ export default class Simulation extends Component {
   water = 0;
   lastSolUpdate = 0;
   sols = 0;
+  stopAnimSolLim = false;
   
   // Rover Properties
   roverSize = 200;
@@ -53,9 +54,12 @@ export default class Simulation extends Component {
   };
 
   draw = (p5) => {
-    if (p5.millis() - this.lastSolUpdate >= 1000) {
+    if ((p5.millis() - this.lastSolUpdate >= 1000) && !this.stopAnimSolLim) {
       this.sols += 1; // Increment sols by 1
       this.lastSolUpdate = p5.millis(); // Reset the last update time
+    }
+    if(this.sols >= 14){
+      this.stopAnimSolLim = true;
     }
     if (this.backgroundImg) {
       p5.image(this.backgroundImg, 0, 0, p5.width, p5.height);
@@ -106,7 +110,13 @@ export default class Simulation extends Component {
     if (this.roverMoving) {
       p5.image(this.images.rover, this.roverX, this.roverY, this.roverSize, this.roverSize * 0.6);
     }
-
+    if (this.stopAnimSolLim && this.health > 0){
+      p5.fill(0);
+      p5.noStroke();
+      p5.textSize(16);
+      p5.textAlign(p5.CENTER, p5.CENTER);
+      p5.text(`You won the game`, p5.width / 2, p5.height - 40);
+    }
     p5.fill(0);
     p5.noStroke();
     p5.textSize(16);
@@ -181,7 +191,6 @@ export default class Simulation extends Component {
   render() {
     return (
       <div className="flex flex-col items-center">
-        <label className="text-white">Num of sols:{this.sols}</label>
         <Sketch setup={this.setup} draw={this.draw} mousePressed={this.mousePressed} keyPressed={this.keyPressed} />
         <div className="flex gap-4 mt-4">
           <button onClick={() => this.selectCrop("carrot")}><img src={carrotEmoji} alt="Carrot" width="50" /></button>
