@@ -10,7 +10,7 @@ export const modelsData = [
                 id: "corn",
                 name: "Corn",
                 category: "corn",
-                model3d: "/assets/models/mars_compressed.glb",
+                model3d: "/assets/models/Corn.glb",
                 characteristics: [
                     {
                         "Orbital Characteristics": {
