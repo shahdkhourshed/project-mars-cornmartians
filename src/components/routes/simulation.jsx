@@ -1,6 +1,12 @@
 // simulation.jsx
 import React, { Component } from "react";
 import Sketch from "react-p5";
+import backgroundImage from "./red_mars_sand.webp"; // Ensure this path is correct
+import lettuceEmoji from "./lettuce.webp";
+import onionEmoji from "./onion.webp";
+import cornEmoji from "./corn.webp";
+import carrotEmoji from "./carrot.webp";
+import sweetPotatoEmoji from "./sweetpotato.webp";
 
 export default class Simulation extends Component {
   gridSize = 5;
@@ -8,13 +14,22 @@ export default class Simulation extends Component {
   grid = [];
   currentAction = "plant"; // Available actions: plant, water, harvest
   crops = [];
+  backgroundImg = null;
 
   setup = (p5, parent) => {
     console.log("gold");
     p5.createCanvas(this.gridSize * this.tileSize, this.gridSize * this.tileSize).parent(parent);
 
+    // Load background image
+    this.backgroundImg = p5.loadImage(backgroundImage);
+    this.lettuce = p5.loadImage(lettuceEmoji);
+    this.onion = p5.loadImage(onionEmoji);
+    this.sweetPotato = p5.loadImage(sweetPotatoEmoji);
+    this.corn = p5.loadImage(cornEmoji);
+    this.carrot = p5.loadImage(carrotEmoji);
+
     // Initialize the grid with empty tiles
-    for (let i = 0; i < this.gridSize; i++) {
+    for (let i = 0; i < this.gridSize; i++){
       let row = [];
       for (let j = 0; j < this.gridSize; j++) {
         row.push(null);  // No crop in this tile initially
@@ -31,33 +46,37 @@ export default class Simulation extends Component {
       }
     };
   }
-
   draw = (p5) => {
-    p5.background(200);
+    // Draw background image
+    if (this.backgroundImg) {
+      p5.image(this.backgroundImg, 0, 0, p5.width, p5.height);
+    } else {
+      p5.background(200);
+    }
 
     // Draw the grid and crops
     for (let i = 0; i < this.gridSize; i++) {
       for (let j = 0; j < this.gridSize; j++) {
-        // Draw each tile
+        // Draw each tile (grid lines)
         p5.stroke(0);
-        p5.fill(255);
+        p5.noFill();
         p5.rect(i * this.tileSize, j * this.tileSize, this.tileSize, this.tileSize);
 
         // Draw the crop if there is one
         let crop = this.grid[i][j];
         if (crop) {
-          p5.fill(crop.growthStage === 2 ? crop.type.color : p5.color(0, 255, 0)); // Full growth or growing plant
+          p5.fill(crop.growthStage === 3 ? crop.type.color : p5.color(0, 255, 0)); // Full growth or growing plant
           p5.ellipse(i * this.tileSize + this.tileSize / 2, j * this.tileSize + this.tileSize / 2, this.tileSize / 2, this.tileSize / 2);
 
           // Grow the plant if it's not fully grown
-          if (crop.growthStage < 2) {
+          if (crop.growthStage < 3) {
             crop.growthProgress += crop.type.growthRate;
             if (crop.growthProgress >= 1) {
               crop.growthStage++;
               crop.growthProgress = 0;
             }
           }
-        }
+       }
       }
     }
 
@@ -67,9 +86,8 @@ export default class Simulation extends Component {
     p5.textSize(16);
     p5.textAlign(p5.CENTER, p5.CENTER);
     p5.text(`Action: ${this.currentAction}`, p5.width / 2, p5.height - 20);
-  }
+  };
 
-  // Handle mouse clicks to interact with the grid
   mousePressed = (p5) => {
     let i = Math.floor(p5.mouseX / this.tileSize);
     let j = Math.floor(p5.mouseY / this.tileSize);
@@ -88,28 +106,24 @@ export default class Simulation extends Component {
         crop.growthProgress += 0.5; // Water speeds up growth
       } else if (this.currentAction === "harvest" && crop && crop.growthStage === 2) {
         // Harvest the crop (only if fully grown)
-        this.grid[i][j] = null;
+       this.grid[i][j] = null;
       }
     }
   };
 
-  // Switch between actions using the keyboard
   keyPressed = (p5) => {
     if (p5.key === '1') {
       this.currentAction = "plant";
-    } else if (p5.key === '2') {
-      this.currentAction = "water";
     } else if (p5.key === '3') {
       this.currentAction = "harvest";
     }
   };
-  
+
   render() {
     return (
       <div className="flex flex-col items-center">
-        <Sketch setup={this.setup} draw={this.draw} 
-    mousePressed={this.mousePressed} keyPressed={this.keyPressed} />;
+        <Sketch setup={this.setup} draw={this.draw} mousePressed={this.mousePressed} keyPressed={this.keyPressed} />
       </div>
-    )
-  };
+    );
+  }
 }
