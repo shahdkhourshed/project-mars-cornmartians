@@ -70,7 +70,7 @@ export default class Simulation extends Component {
 
   disasterText = async () => {
     this.setState({ showDisasterMessage: true });
-    await sleep(2000); // Wait for 2 seconds
+    await sleep(5000); // Wait for 2 seconds
     this.setState({ showDisasterMessage: false });
   };
 
@@ -98,7 +98,7 @@ export default class Simulation extends Component {
   
     if(this.sols >= 14 || this.state.totalPlantsHarvested >= 7){
       this.stopAnimSolLim = true;
-      p5.fill(0);
+      p5.fill(255,255,255);
       p5.noStroke();
       p5.textSize(16);
       p5.textAlign(p5.CENTER, p5.CENTER);
@@ -168,7 +168,7 @@ export default class Simulation extends Component {
       p5.textAlign(p5.CENTER, p5.CENTER);
       p5.text(`You won the game`, p5.width / 2, p5.height - 40);
     }
-    p5.fill(0);
+    p5.fill(255,255,255);
     p5.noStroke();
     p5.textSize(16);
     p5.textAlign(p5.CENTER, p5.CENTER);
