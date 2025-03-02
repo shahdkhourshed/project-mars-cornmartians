@@ -32,7 +32,7 @@ By immersing players in the challenges of cultivating crops on Mars, Corn Martia
 - **Draco3D:** Used for compressing 3D models to improve loading times.
 
 <h3> Resources and Inspiration</h3>
-We forked the reposiroty from Project Mars, an open-source project that aims to share information about Mars missions, weather, rovers, etc. Some of the changes made to it include, fixing the weather tab, adding a plants tab, and creating a simulation. We also deleted the tabs that were irrelevant to our project. 
+We forked the reposiroty from Project Mars, an open-source project that aims to share information about Mars missions, weather, rovers, etc. Some of the changes made to it include, updating the weather tab, adding a plants tab, and creating a simulation. We also deleted the tabs that were irrelevant to our project. 
 
 <h3> Images used for 3d models in the Plants Tab and Simulation </h3>
 1. For Corn GLB: Ear of corn by Poly by Google [CC-BY] via Poly Pizza Or Corn by Poly by Google [CC-BY] via Poly Pizza
@@ -44,7 +44,8 @@ We forked the reposiroty from Project Mars, an open-source project that aims to 
 7. Vegetable buttons: Images of Apple emojis from Google 
 
 <h3>Authors</h3>
-Kitty Tran, Sakshi Pande, Grant Henderson, Shahd Khourshed
+Kitty Tran, Sakshi Pande, Grant Henderson, Shahd Khourshed; 
+Competitors in the CornHacks (Hackathon at the University of Nebraska-Lincoln)
 
 <h2>Usage</h2>
 
