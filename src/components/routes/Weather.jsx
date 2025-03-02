@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from "axios";
 
@@ -13,7 +12,7 @@ const WeatherCard = ({ weather, index }) => {
   const weatherItems = [
     {
       label: 'Sol',
-      value: weather.dateSol || 'N/A',
+      value: `Sol ${weather.dateSol} (Day ${index + 1})`,
       icon: clear_day,
       alt: 'Sol',
     },
@@ -35,13 +34,15 @@ const WeatherCard = ({ weather, index }) => {
       icon: thermometer_colder,
       alt: 'Minimum Temperature',
     },
-
   ];
 
   return (
     <div key={index} className='grid md:grid-cols-2 parallax blur__card items-center justify-around py-[2rem] mt-8 mx-8'>
-      <div className='text-[2rem] col-span-2 text-center font-bold italic'>{weather.UTC}</div>
-      {weatherItems.map((item, i) => (
+      <div className='text-[2rem] col-span-2 text-center font-bold italic'>
+        <img src={clear_day} alt="Sol" className='inline-block w-[2rem] h-[2rem] mr-2' />
+        {weatherItems[0].value}
+      </div>
+      {weatherItems.slice(1).map((item, i) => (
         <div key={i} className='md:flex md:flex-col md:items-center'>
           <div className='w-[6rem] md:w-[8rem]'>
             <img src={item.icon} alt={item.alt} className='w-[100%] object-contain' />
@@ -122,10 +123,6 @@ const Weather = () => {
           <div className='flex flex-col items-center px-5 text-center'>
             <p className='font-bold text-[4rem] text-white text-center blink__word select-none my-10'>
               Weather
-            </p>
-            <p className='text-[1.3rem] md:text-[1.5rem] xl:text-[1.8rem] font-medium'>
-              <Link to="/about/rovers/active/curiosity" className='text-orange-500 font-bold blink'>Curiosity </Link>
-              is taking daily weather measurements at Gale Crater in the southern hemisphere of Mars, near the equator.
             </p>
           </div>
 
