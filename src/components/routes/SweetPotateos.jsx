@@ -1,65 +1,35 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
-import { useContext } from "react";
-import { ModelsDataContext } from "../models/modelsContext";
+import Characteristics from "../Characteristics";
+import { useFetchData } from "../hooks/useFetchData";
+import Model3D from "../models/Model3D";
 
-const SweetPotatoesCategory = () => {
-    const modelsData = useContext(ModelsDataContext);
-    const sweetPotatoCategory = modelsData.find(model => model.category === 'sweet potatoes');
-    const location = useLocation();
-    return (
-        <div className="text-center">
-        <p className='font-bold text-[4rem] text-white text-center blink__word select-none my-10'>
-        Sweet Potatos
+const SweetPotatoesPage = () => {
+  const sweet_potatoes = useFetchData('sweet potatoes', "", 'sweet potatoes');
+  const chars = sweet_potatoes.characteristics;
+
+  if (!sweet_potatoes) {
+    return <div>Sweet potatoes not found</div>
+  }
+
+  return (
+    <div className="flex flex-col w-full">
+      <p className='font-bold text-[4rem] text-white text-center blink__word select-none my-10'>
+      Sweet Potatoes
       </p>
-            <ul
-                className={`
-                    my-12
-                    flex
-                    flex-col
-                    flex-wrap
-                    items-center
-                    text-3xl
-                    text-center
-                    text-white
-                    font-semibold
-                    md:flex-row
-                    md:justify-evenly
-                    md:text-4xl
-                    lg:text-5xl
-                    lg:h-[80vh]
-                    ${location.pathname.includes("/about/sweet potatoes/") ? "hidden" : ""}
-                `}>
-                {sweetPotatoCategory.children.map(subcategory => (
-                    <li key={subcategory.subcategory}>
-                        <div
-                            className="
-                                my-6
-                                w-[15rem]
-                                h-[23rem]
-                                md:w-[18rem]
-                                md:h-[28rem]
-                                lg:w-[25rem]
-                                lg:h-[35rem]
-                                blur__card
-                                parallax
-                            ">
-                            <Link
-                                to={`/about/rovers/${subcategory.subcategory}`}
-                                className="flex flex-col h-full justify-between py-12">
-                                <img
-                                    src={subcategory.cover}
-                                    className="w-[12rem] md:w-[15rem] lg:w-[20rem] self-center"
-                                    loading="lazy"
-                                    alt={subcategory.name} />
-                                <span className="blink">{subcategory.name}</span>
-                            </Link>
-                        </div>
-                    </li>
-                ))}
-            </ul>
-            <Outlet />
-        </div>
-    );
-};
+      <div
+          className="
+            flex
+            flex-col
+            justify-end
+            text-xl
+            text-white
+            xl:flex-row-reverse
+        ">
+        <Model3D key={sweet_potatoes.model3d} modelPath={sweet_potatoes.model3d} initialScale={4} cameraPosition={[16, -40, 180]} /> 
+        <Characteristics data={chars} />
+      </div>
+    </div>
+  )
+}
 
-export default SweetPotatoesCategory;
+export default SweetPotatoesPage;
+

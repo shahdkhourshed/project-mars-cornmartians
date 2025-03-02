@@ -168,7 +168,7 @@ export const modelsData = [
                 id: "lettuce",
                 name: "Lettuce",
                 category: "lettuce",
-                model3d: "/assets/models/Corn.glb",
+                model3d: "/assets/models/Lettuce.glb",
                 characteristics: [
 
                 ]
@@ -180,7 +180,17 @@ export const modelsData = [
         name: 'Sweet Potatoes',
         category: 'sweet potatoes',
         cover: '/assets/covers/sweet_potato.webp',
+        model3d: "/assets/models/SweetPotatoes.glb",
         children: [
+            {
+                id: "sweet potatoes",
+                name: "Sweet Potatoes",
+                category: "sweet potatoes",
+                model3d: "/assets/models/SweetPotatoes.glb",
+                characteristics: [
+
+                ]
+            }
         ],
     },
     // Satellites

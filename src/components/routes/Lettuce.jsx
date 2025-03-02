@@ -24,7 +24,7 @@ const LettucePage = () => {
             text-white
             xl:flex-row-reverse
         ">
-        <Model3D key={lettuce.model3d} modelPath={lettuce.model3d} initialScale={0.1} cameraPosition={[0, 0, 180]} /> 
+        <Model3D key={lettuce.model3d} modelPath={lettuce.model3d} initialScale={40} cameraPosition={[16, -40, 180]} /> 
         <Characteristics data={chars} />
       </div>
     </div>
