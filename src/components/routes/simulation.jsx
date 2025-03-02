@@ -103,9 +103,13 @@ export default class Simulation extends Component {
       this.currentAction = "harvest";
     }
   };
-
+  
   render() {
-    return <Sketch setup={this.setup} draw={this.draw} 
+    return (
+      <div className="flex flex-col items-center">
+        <Sketch setup={this.setup} draw={this.draw} 
     mousePressed={this.mousePressed} keyPressed={this.keyPressed} />;
+      </div>
+    )
   };
 }
