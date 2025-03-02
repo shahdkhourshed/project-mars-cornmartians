@@ -136,6 +136,9 @@ export default class Simulation extends Component {
         console.log(this.health_bar);
         console.log(this.plants_harvested);
         this.grid[i][j] = null;
+      } else if (this.currentAction === "water" && crop && crop.growthStage < 2) {
+        // Watering crops makes them instantly grow to the next stage
+        crop.growthStage++;
       }
     }
   };
@@ -143,6 +146,8 @@ export default class Simulation extends Component {
   keyPressed = (p5) => {
     if (p5.key === '1') {
       this.currentAction = "plant";
+    } else if (p5.key === '2') {
+      this.currentAction = "water";
     } else if (p5.key === '3') {
       this.currentAction = "harvest";
     }
