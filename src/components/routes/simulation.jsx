@@ -8,6 +8,12 @@ import carrotEmoji from "./carrot.webp";
 import sweetPotatoEmoji from "./sweetpotato.webp";
 import roverImage from "./rover_right.webp";
 
+async function disasterText() {
+  console.log("Start");
+  await sleep(2000); // Wait for 2 seconds
+  console.log("End");
+}
+
 export default class Simulation extends Component {
   gridSize = 5;
   tileSize = 100;
@@ -21,7 +27,7 @@ export default class Simulation extends Component {
   plants_harvested = { carrot: 0, corn: 0, lettuce: 0, onion: 0, sweetPotato: 0 };
   water = 0;
   lastSolUpdate = 0;
-  sols = 0;
+  sols = 1;
   stopAnimSolLim = false;
   
   // Rover Properties
@@ -52,14 +58,51 @@ export default class Simulation extends Component {
     }
     this.lastSolUpdate = p5.millis();
   };
+  stormOccurred = false; // Flag to track storm occurrence
+  stormMessageStart = null; // Store the time when storm message starts
 
+  
   draw = (p5) => {
-    if ((p5.millis() - this.lastSolUpdate >= 1000) && !this.stopAnimSolLim) {
+    // Check if enough time has passed for the next sol increment
+    if ((p5.millis() - this.lastSolUpdate >= 60000) && !this.stopAnimSolLim) {
       this.sols += 1; // Increment sols by 1
       this.lastSolUpdate = p5.millis(); // Reset the last update time
     }
+    if (this.sols === 3 && !this.stormOccurred) {
+      this.stormOccurred = true;
+      this.stormMessageStart = p5.millis(); // Store the start time for the message
+      this.grid = this.grid.map(row => row.map(() => null)); // Remove all crops
+    }
+    // Handle the storm message if a storm occurred
+    if (this.stormOccurred) {
+      if (p5.millis() - this.stormMessageStart < 2000) {
+        // Show disaster message
+        p5.fill(0);
+        p5.noStroke();
+        p5.textSize(16);
+        p5.textAlign(p5.CENTER, p5.CENTER);
+        p5.text("Disaster: You lost your crops!", p5.width / 2, p5.height / 2);
+      } else {
+        // After 2 seconds, clear the storm message and reset the storm state
+        this.stormOccurred = false;
+        this.grid = this.grid.map(row => row.map(() => null)); // Remove all crops
+      }
+    }
+  
+    // Trigger storm event after 2 sols
+    if (this.sols === 3 && !this.stormOccurred) {
+      this.stormOccurred = true;
+      this.stormMessageStart = p5.millis(); // Store the start time for the message
+    }
     if(this.sols >= 14){
       this.stopAnimSolLim = true;
+      p5.fill(0);
+      p5.noStroke();
+      p5.textSize(16);
+      p5.textAlign(p5.CENTER, p5.CENTER);
+      p5.text("Game Over! You've completed 14 sols.", p5.width / 2, p5.height / 2);
+      p5.text(`You harvested ${this.plants_harvested.carrot} carrots, ${this.plants_harvested.corn} corns, ${this.plants_harvested.lettuce} lettuce, ${this.plants_harvested.onion} onions, and ${this.plants_harvested.sweetPotato} sweet potatoes.`, p5.width / 2, p5.height / 2 + 20);
+      return;
     }
     if (this.backgroundImg) {
       p5.image(this.backgroundImg, 0, 0, p5.width, p5.height);
@@ -75,13 +118,13 @@ export default class Simulation extends Component {
 
         let crop = this.grid[i][j];
         if (crop) {
-          if (p5.millis() - crop.timePlanted > 5500) {
-            p5.fill(0);
+          if (p5.millis() - crop.timePlanted > 45000) {
+            p5.fill(255);
             p5.rect(i * this.tileSize, j * this.tileSize, this.tileSize, this.tileSize);
           } else {
-            if (crop.growthStage < 2) {
+            if (crop.growthStage < 2 && (p5.millis() - crop.timePlanted > 15000)) {
               crop.growthProgress += 0.01;
-              if (crop.growthProgress >= 1) {
+              if (crop.growthProgress >= 1 && (p5.millis() - crop.timePlanted > 30000)) {
                 crop.growthStage++;
                 crop.growthProgress = 0;
               }
@@ -142,8 +185,9 @@ export default class Simulation extends Component {
         this.health_bar += this.getHealthBoost(crop.type);
         this.plants_harvested[crop.type]++;
         this.grid[i][j] = null;
-      } else if (this.currentAction === "water" && crop && crop.growthStage < 2) {
+      } else if (this.currentAction === "water" && crop && crop.growthStage < 2 && this.water > 0) {
         crop.growthStage++;
+        this.water--; // Decrease water when a crop is watered
       }
     }
   };
@@ -178,6 +222,8 @@ export default class Simulation extends Component {
       this.currentAction = "plant";
     } else if (p5.key === "2") {
       this.currentAction = "water";
+      // Decrease water when pressing the 2 key
+      this.water = Math.max(this.water - 1, 0);  // Prevent water from going negative
     } else if (p5.key === "3") {
       this.currentAction = "harvest";
     }
