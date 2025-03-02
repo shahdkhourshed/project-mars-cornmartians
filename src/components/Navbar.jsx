@@ -80,13 +80,13 @@ const Navbar = () => {
                         lg:mt-2
                         xl:ml-[4rem]
                         xl:max-w-[8rem]
-                        2xl:mt-4
+                        2xl:mt-0
                         2xl:ml-[8rem]
                         2xl:max-w-[10rem]
                         4k:ml-[12rem]
          ">
           <Link to="/" aria-label="Go to Home">
-            <img src="/assets/logos/logo.webp"
+            <img src="/assets/logos/corn_martian.webp"
               alt="Logo"
             />
           </Link>

@@ -10,7 +10,7 @@ import Corn from "./Corn";
 import Lettuce from "./Lettuce";
 import SweetPotatoes from "./SweetPotateos";
 import Carrots from "./Carrots";
-
+import Simulation from "./simulation";  
 const routes = [{
     path: '/',
     element: <App />,
@@ -64,6 +64,11 @@ const routes = [{
         //     text: 'PARTNERS',
         //     element: <Partners />,
         // },
+        {
+            path: "simulation",  // New tab for the p5.js sketch
+            text: "SIMULATION",
+            element: <Simulation />,  // This renders your p5.js sketch
+        }
     ]
 }];
 
