@@ -8,10 +8,8 @@ import carrotEmoji from "./carrot.webp";
 import sweetPotatoEmoji from "./sweetpotato.webp";
 import roverImage from "./rover_right.webp";
 
-async function disasterText() {
-  console.log("Start");
-  await sleep(2000); // Wait for 2 seconds
-  console.log("End");
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 export default class Simulation extends Component {
@@ -19,6 +17,7 @@ export default class Simulation extends Component {
     super(props);
     this.state = {
       totalPlantsHarvested: 0, // New state variable to track total plants harvested
+      showDisasterMessage: false, // State variable to control the display of the disaster message
     };
   }
 
@@ -39,7 +38,7 @@ export default class Simulation extends Component {
   
   // Rover Properties
   roverSize = 200;
-  roverSpeed = 1.5;
+  roverSpeed = 3;
   roverX = -80;
   roverY = (this.gridSize * this.tileSize) / 2 - this.roverSize / 2;
   roverMoving = false;
@@ -65,10 +64,16 @@ export default class Simulation extends Component {
     }
     this.lastSolUpdate = p5.millis();
   };
+
   stormOccurred = false; // Flag to track storm occurrence
   stormMessageStart = null; // Store the time when storm message starts
 
-  
+  disasterText = async () => {
+    this.setState({ showDisasterMessage: true });
+    await sleep(2000); // Wait for 2 seconds
+    this.setState({ showDisasterMessage: false });
+  };
+
   draw = (p5) => {
     // Check if enough time has passed for the next sol increment
     if ((p5.millis() - this.lastSolUpdate >= 60000) && !this.stopAnimSolLim) {
@@ -79,28 +84,18 @@ export default class Simulation extends Component {
       this.stormOccurred = true;
       this.stormMessageStart = p5.millis(); // Store the start time for the message
       this.grid = this.grid.map(row => row.map(() => null)); // Remove all crops
+      this.disasterText(); // Call the disasterText function
     }
     // Handle the storm message if a storm occurred
-    if (this.stormOccurred) {
-      if (p5.millis() - this.stormMessageStart < 2000) {
-        // Show disaster message
-        p5.fill(0);
-        p5.noStroke();
-        p5.textSize(16);
-        p5.textAlign(p5.CENTER, p5.CENTER);
-        p5.text("Disaster: You lost your crops!", p5.width / 2, p5.height / 2);
-      } else {
-        // After 2 seconds, clear the storm message and reset the storm state
-        this.stormOccurred = false;
-        this.grid = this.grid.map(row => row.map(() => null)); // Remove all crops
-      }
+    if (this.state.showDisasterMessage) {
+      // Show disaster message
+      p5.fill(0);
+      p5.noStroke();
+      p5.textSize(16);
+      p5.textAlign(p5.CENTER, p5.CENTER);
+      p5.text("Disaster: You lost your crops!", p5.width / 2, p5.height / 2);
     }
   
-    // Trigger storm event after 2 sols
-    if (this.sols === 3 && !this.stormOccurred) {
-      this.stormOccurred = true;
-      this.stormMessageStart = p5.millis(); // Store the start time for the message
-    }
     if(this.sols >= 14){
       this.stopAnimSolLim = true;
       p5.fill(0);
@@ -260,6 +255,14 @@ export default class Simulation extends Component {
         </div>
         <div className="flex flex-col items-center ml-4">
           <Sketch setup={this.setup} draw={this.draw} mousePressed={this.mousePressed} keyPressed={this.keyPressed} />
+          {this.state.showDisasterMessage && (
+            <div className="mt-4" style={{ color: "red" }}>
+              Disaster: You lost your crops!
+            </div>
+          )}
+          <div className="mt-4" style={{ color: "white" }}>
+            Total Plants Harvested: {this.state.totalPlantsHarvested}
+          </div>
           <div className="flex gap-4 mt-4">
             <button onClick={() => this.selectCrop("carrot")}><img src={carrotEmoji} alt="Carrot" width="50" /></button>
             <button onClick={() => this.selectCrop("corn")}><img src={cornEmoji} alt="Corn" width="50" /></button>
@@ -268,9 +271,6 @@ export default class Simulation extends Component {
             <button onClick={() => this.selectCrop("sweetPotato")}><img src={sweetPotatoEmoji} alt="Sweet Potato" width="50" /></button>
           </div>
           <button onClick={this.fetchWater} className="mt-4 p-2 bg-blue-500 text-white rounded">Fetch Water</button>
-          <div className="mt-4" style={{ color: "white" }}>
-            Total Plants Harvested: {this.state.totalPlantsHarvested}
-          </div>
         </div>
       </div>
     );
