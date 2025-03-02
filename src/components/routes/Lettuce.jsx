@@ -38,7 +38,7 @@ const LettucePage = () => {
       </p>
       <div className="flex flex-col xl:flex-row justify-between items-center text-xl text-white">
         <div className="w-full xl:w-1/2 p-4">
-          <Model3D key={lettuceData.model3d} modelPath={lettuceData.model3d} initialScale={0.1} cameraPosition={[0, 0, 180]} />
+          <Model3D key={lettuceData.model3d} modelPath={lettuceData.model3d} initialScale={35} cameraPosition={[16, 40, 180]} />
         </div>
         <div className="w-full xl:w-1/2 p-4">
           <LettuceDetails />

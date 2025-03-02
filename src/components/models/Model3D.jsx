@@ -52,8 +52,8 @@ const Model3D = ({ modelPath, initialScale, cameraPosition }) => {
 
     loader.load(modelPath, (gltf) => {
       scene.add(gltf.scene);
-      gltf.scene.scale.set(initialScale + 2, initialScale + 2, initialScale + 2);
-      gltf.scene.position.set(16, -40, 0);
+      gltf.scene.scale.set(initialScale, initialScale, initialScale);
+      gltf.scene.position.set(0, 0, 0);
     }, undefined, (error) => {
       console.log(error);
     });
@@ -63,13 +63,13 @@ const Model3D = ({ modelPath, initialScale, cameraPosition }) => {
     // Added orbit controls
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
-    controls.rotateSpeed = 0.7;
+    controls.rotateSpeed = 1;
 
     // Added animation loop
     const animate = () => {
       requestAnimationFrame(animate);
       renderer.render(scene, camera);
-      scene.rotation.y += 0.001;
+      scene.rotation.y += 0.002;
     }
     animate();
 

@@ -39,7 +39,7 @@ const CornPage = () => {
       </p>
       <div className="flex flex-col xl:flex-row justify-between items-center text-xl text-white">
         <div className="w-full xl:w-1/2 p-4">
-          <Model3D key={cornData.model3d} modelPath={cornData.model3d} initialScale={0.1} cameraPosition={[0, 0, 180]} />
+          <Model3D key={cornData.model3d} modelPath={cornData.model3d} initialScale={1.5} cameraPosition={[0, 0, 180]} />
         </div>
         <div className="w-full xl:w-1/2 p-4">
           <CornDetails />
