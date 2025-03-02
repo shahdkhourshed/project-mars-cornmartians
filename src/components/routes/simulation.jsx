@@ -38,7 +38,7 @@ export default class Simulation extends Component {
   
   // Rover Properties
   roverSize = 200;
-  roverSpeed = 3;
+  roverSpeed = 4;
   roverX = -80;
   roverY = (this.gridSize * this.tileSize) / 2 - this.roverSize / 2;
   roverMoving = false;
@@ -96,14 +96,20 @@ export default class Simulation extends Component {
       p5.text("Disaster: You lost your crops!", p5.width / 2, p5.height / 2);
     }
   
-    if(this.sols >= 14){
+    if(this.sols >= 14 || this.state.totalPlantsHarvested >= 7){
       this.stopAnimSolLim = true;
       p5.fill(0);
       p5.noStroke();
       p5.textSize(16);
       p5.textAlign(p5.CENTER, p5.CENTER);
-      p5.text("Game Over! You've completed 14 sols.", p5.width / 2, p5.height / 2);
-      p5.text(`You harvested ${this.plants_harvested.carrot} carrots, ${this.plants_harvested.corn} corns, ${this.plants_harvested.lettuce} lettuce, ${this.plants_harvested.onion} onions, and ${this.plants_harvested.sweetPotato} sweet potatoes.`, p5.width / 2, p5.height / 2 + 20);
+      if (this.state.totalPlantsHarvested >= 7) {
+        p5.text("You harvested enough crops to survive!", p5.width / 2, p5.height / 2);
+        p5.text(`You harvested ${this.plants_harvested.carrot} carrots, ${this.plants_harvested.corn} corns, ${this.plants_harvested.lettuce} lettuce, ${this.plants_harvested.onion} onions, and ${this.plants_harvested.sweetPotato} sweet potatoes.`, p5.width / 2, p5.height / 2 + 20);
+      } else {
+        p5.text("Game over! You weren't able to harvest enough crops to survive 14 sols.", p5.width / 2, p5.height / 2);
+        p5.text(`You harvested ${this.plants_harvested.carrot} carrots, ${this.plants_harvested.corn} corns, ${this.plants_harvested.lettuce} lettuce, ${this.plants_harvested.onion} onions, and ${this.plants_harvested.sweetPotato} sweet potatoes.`, p5.width / 2, p5.height / 2 + 20);
+      }
+      
       return;
     }
     if (this.backgroundImg) {
