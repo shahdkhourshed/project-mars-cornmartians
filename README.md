@@ -1,29 +1,18 @@
+<h1>Corn Martian</h1>
+<p align="left">Corn Martian is a strategic simulation game that explores the challenges of growing plants on Mars, blending real-world science with interactive gameplay. By simulating realistic Martian conditions through the use of obstacles, the game provides valuable insights into food production beyond Earth, making it both an educational tool and an inspiration for future space pioneers. Aspiring Martian colonizers can use Corn Martian to test agricultural strategies that may one day support human life on the Red Planet.
+</p>
 
-<img 
-src="./readme_assets/home_pc.webp" 
-alt="Project Mars"
-width="84%">
-<img 
-src="./readme_assets/home_mobile.webp" 
-alt="Project Mars"
-width="14.35%">
+<h2>Uniqueness</h2>
+Corn Martian combines science with gameplay, offering players a hands-on approach to understanding plant growth on Mars. The game’s blend of education and strategy makes it a one-of-a-kind experience for space and sustainability enthusiasts alike.
 
+<h2>Impact</h2>
+By immersing players in the challenges of cultivating crops on Mars, Corn Martian fosters curiosity about space exploration, sustainability, and future colonization. The game not only educates users on the science of growing food in extreme environments but also inspires innovation in agriculture and space technology. Through simulation-based learning, it encourages critical thinking and problem-solving, empowering the next generation of scientists, engineers, and dreamers to tackle real-world challenges beyond Earth.
 
-<h1>Project Mars</h1>
-<p align="left">Project Mars is a frontend web application that provides a captivating journey through the Martian landscape. As a frontend developer, I've used various technologies and techniques to create an engaging and informative experience for users interested in the Red Planet.</p>
+<h2>API Used</h2>
 
-<h2>Project Structure</h2>
-The project is structured to ensure clarity and maintainability. <b>It contains two branches for data scraping (the rest of the content remains the same):</b>
+<h3>NASA API</h3>
 
-- **`server`:**
- Features a traditional client-server architecture where the server serves the scraped data to the frontend. The live demo of it you can find <a href="https://project-mars.onrender.com/">here</a>. Due to Render free tier limitations, the site is turning idle after 15 minutes so you'll need to wait 3-5 minutes until Render rebuilds the site. So if you want to see the demo without waiting, go to link in the **About** section which uses serverless function. 
-
-- **`serverless`:**
-Utilizes a serverless function on Vercel, making data retrieval more efficient.
-
-<img 
-src="./readme_assets/about_pc.webp" 
-alt="Project Mars">
+- **Mars Weather:**: This API offers weather data from the Mars InSight lander, including temperature, wind speed, and atmospheric pressure. We used it to find the weather from each day to keep the user informed about the weather in their simulation. 
 
 <h2>Technologies Used</h2>
 
@@ -34,19 +23,9 @@ alt="Project Mars">
 - **Recharts:** Utilized for creating interactive charts and visualizations.
 - **Three.js:** To incorporate 3D models and enhance the user experience.
 - **Vite:** As a fast build tool for the frontend development stack.
-  
-<img 
-src="./readme_assets/weather.gif" 
-alt="Project Mars" 
-width="45%"
-align="right">
 
-<h3>Data Scraping</h3>
-
-- **Puppeteer:** Used to scrape data from NASA's site and generate API endpoints for the frontend.
-- **Node.js**: Used for backend operations in the `server` branch.
-- **Express.js**: Utilized in the backend of the `server` branch for enhanced server-side functionality.
-- **Serverless Function (Vercel):** Used serverless architecture on Vercel in `serverless` branch which efficiently serves scraped data to the frontend.
+<h3>Simulation Development</h3>
+- **p5.js:** The simulation was developed using the p5.js framework for easy animation and interactivity.  
 
 <h3>Design and Styling</h3>
 
@@ -54,30 +33,18 @@ align="right">
 - **Figma/Adobe Illustrator:** Custom-created and/or edited assets and illustrations to enhance the project's aesthetics.
 - **Draco3D:** Used for compressing 3D models to improve loading times.
 
-<h3>Optimization</h3>
 
-- **Asset Compression:** All assets, including 3D models, are compressed for optimal network efficiency.
-- **Text Compression (gzip):** Text-based content is compressed to reduce load times and improve performance.
-- **React Context:** Used for managing and sharing state data across component tree without having to pass props manually at every level of nesting (prop drilling).
-- **`node-cache`:**  Used for caching data for 24 hours in the  **`server`** branch to minimize redundant data fetching.
-- **`localStorage`:** Utilized to store weather data for 24 hours in the **`serverless`** branch function to enhance network efficiency.
+<h3>Authors</h3>
+Kitty Tran, Sakshi Pande, Grant Henderson, Shahd Khourshed
 
-<h3>Performance Metrics</h3>
-The project's performance has been optimized using data from <b><i>Lighthouse</i></b> and <b><i>WebVitals</i></b>, obtaining excellent results.
+<h3> Resources and Inspiration</h3>
+Our logo and images were AI-generated from Microsoft Copilot and photoshopped by Kitty Tran to fit our needs. We forked the reposiroty from Project Mars, an open-source project that aims to share information about Mars missions, weather, rovers, etc. Some of the changes made to it include, fixing the weather tab, adding a plants tab, and creating a simulation. We also deleted the tabs that were irrelevant to our project. 
 
 <h2>Usage</h2>
 
-1. Clone the repository:<b> `git clone https://github.com/cristianvsirbu/project-mars`</b>
-2. Navigate to the project directory:<b> `cd project-mars`</b>
+1. Clone the repository:<b> `git clone https://github.com/shahdkhourshed/project-mars-cornmartians.git`</b>
+2. Navigate to the project directory:<b> `cd project-mars-cornmartian`</b>
 3. Install the dependencies:<b> `npm install`</b>
 4. Start the development server:<b> `npm run dev`</b>
 5. Open the application in your browser:<b> `http://localhost:3000`</b>
 
-<h2>Contribution</h2>
-
-Contributions are welcome! If you encounter any issues or have suggestions for improvements, please feel free to submit a pull request or open an issue in the repository. To contribute to the Bluestar Bank App project, follow these steps:
-
-1. Fork the repository and create your branch:<b> `git checkout -b my-feature-branch`</b>
-2. Make your changes and commit them:<b> `git commit -m 'Added an awesome feature'`</b>
-3. Push to your branch:<b> `git push origin my-feature-branch`</b>
-4. Open a pull request in the main repository.😊

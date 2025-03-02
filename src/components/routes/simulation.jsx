@@ -236,16 +236,29 @@ export default class Simulation extends Component {
 
   render() {
     return (
-      <div className="flex flex-col items-center">
-        <Sketch setup={this.setup} draw={this.draw} mousePressed={this.mousePressed} keyPressed={this.keyPressed} />
-        <div className="flex gap-4 mt-4">
-          <button onClick={() => this.selectCrop("carrot")}><img src={carrotEmoji} alt="Carrot" width="50" /></button>
-          <button onClick={() => this.selectCrop("corn")}><img src={cornEmoji} alt="Corn" width="50" /></button>
-          <button onClick={() => this.selectCrop("lettuce")}><img src={lettuceEmoji} alt="Lettuce" width="50" /></button>
-          <button onClick={() => this.selectCrop("onion")}><img src={onionEmoji} alt="Onion" width="50" /></button>
-          <button onClick={() => this.selectCrop("sweetPotato")}><img src={sweetPotatoEmoji} alt="Sweet Potato" width="50" /></button>
+      <div className="flex flex-row items-start">
+        <div className="flex flex-col items-start p-4" style={{ color: "white"}}>
+          <h2>Instructions:</h2>
+          <ol className="list-decimal list-inside">
+            <li>Read the plants tab and choose which crops to grow.</li>
+            <li>Press fetch water to collect 5 waters.</li>
+            <li>Press "1" on your keyboard and plant the crops by clicking on the boxes.</li>
+            <li>Press "2" on your keyboard to water the plant.</li>
+            <li>When the plant is watered enough, press "3" to harvest it.</li>
+            <li>Harvest 7 plants each sol to survive the day.</li>
+          </ol>
         </div>
-        <button onClick={this.fetchWater} className="mt-4 p-2 bg-blue-500 text-white rounded">Fetch Water</button>
+        <div className="flex flex-col items-center ml-4">
+          <Sketch setup={this.setup} draw={this.draw} mousePressed={this.mousePressed} keyPressed={this.keyPressed} />
+          <div className="flex gap-4 mt-4">
+            <button onClick={() => this.selectCrop("carrot")}><img src={carrotEmoji} alt="Carrot" width="50" /></button>
+            <button onClick={() => this.selectCrop("corn")}><img src={cornEmoji} alt="Corn" width="50" /></button>
+            <button onClick={() => this.selectCrop("lettuce")}><img src={lettuceEmoji} alt="Lettuce" width="50" /></button>
+            <button onClick={() => this.selectCrop("onion")}><img src={onionEmoji} alt="Onion" width="50" /></button>
+            <button onClick={() => this.selectCrop("sweetPotato")}><img src={sweetPotatoEmoji} alt="Sweet Potato" width="50" /></button>
+          </div>
+          <button onClick={this.fetchWater} className="mt-4 p-2 bg-blue-500 text-white rounded">Fetch Water</button>
+        </div>
       </div>
     );
   }
