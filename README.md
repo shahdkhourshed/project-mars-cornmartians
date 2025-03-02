@@ -31,12 +31,20 @@ By immersing players in the challenges of cultivating crops on Mars, Corn Martia
 - **Microsoft Co-pilot:** AI-generated images of the vegetable astronauts.
 - **Draco3D:** Used for compressing 3D models to improve loading times.
 
+<h3> Resources and Inspiration</h3>
+We forked the reposiroty from Project Mars, an open-source project that aims to share information about Mars missions, weather, rovers, etc. Some of the changes made to it include, fixing the weather tab, adding a plants tab, and creating a simulation. We also deleted the tabs that were irrelevant to our project. 
+
+<h3> Images used for 3d models in the Plants Tab and Simulation </h3>
+1. For Corn GLB: Ear of corn by Poly by Google [CC-BY] via Poly Pizza Or Corn by Poly by Google [CC-BY] via Poly Pizza
+2. For Carrot GLB: Carrot by jeremy [CC-BY] via Poly Pizza
+3. For sweet potato GLB :Potato by jeremy [CC-BY] via Poly Pizza
+4. For lettuce GLB: Lettuce by Quaternius
+5. For Onion GLB:Onion by Kay Lousberg
+6. Mars Sand: FreePik (for background of simulation)
+7. Vegetable buttons: Images of Apple emojis from Google 
 
 <h3>Authors</h3>
 Kitty Tran, Sakshi Pande, Grant Henderson, Shahd Khourshed
-
-<h3> Resources and Inspiration</h3>
-Our logo and images were AI-generated from Microsoft Copilot and photoshopped by Kitty Tran to fit our needs. We forked the reposiroty from Project Mars, an open-source project that aims to share information about Mars missions, weather, rovers, etc. Some of the changes made to it include, fixing the weather tab, adding a plants tab, and creating a simulation. We also deleted the tabs that were irrelevant to our project. 
 
 <h2>Usage</h2>
 
