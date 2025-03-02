@@ -61,24 +61,31 @@ export default class Simulation extends Component {
 
         let crop = this.grid[i][j];
         if (crop) {
-          // Grow the crop over time
-          if (crop.growthStage < 2) {
-            crop.growthProgress += 0.01; // Increment growth progress
-            if (crop.growthProgress >= 1) {
-              crop.growthStage++;
-              crop.growthProgress = 0;
-            }
-          }
-
-          // Draw crop image based on growth stage
-          let cropImage = this.images[crop.type];
-          if (cropImage) {
-            let size = this.tileSize * (0.4 + 0.3 * crop.growthStage); // Scale size based on growth
-            p5.image(cropImage, i * this.tileSize + (this.tileSize - size) / 2, j * this.tileSize + (this.tileSize - size) / 2, size, size);
+          // Check if the crop has been planted for more than 10 seconds
+          if (p5.millis() - crop.timePlanted > 5500) {
+            // Replace with a black square
+            p5.fill(0);
+            p5.rect(i * this.tileSize, j * this.tileSize, this.tileSize, this.tileSize);
           } else {
-            // Placeholder orange dot for crop growth
-            p5.fill(crop.growthStage === 2 ? 255 : 165, crop.growthStage === 2 ? 165 : 0, 0);
-            p5.ellipse(i * this.tileSize + this.tileSize / 2, j * this.tileSize + this.tileSize / 2, this.tileSize / 2);
+            // Grow the crop over time
+            if (crop.growthStage < 2) {
+              crop.growthProgress += 0.01; // Increment growth progress
+              if (crop.growthProgress >= 1) {
+                crop.growthStage++;
+                crop.growthProgress = 0;
+              }
+            }
+
+            // Draw crop image based on growth stage
+            let cropImage = this.images[crop.type];
+            if (cropImage) {
+              let size = this.tileSize * (0.4 + 0.3 * crop.growthStage); // Scale size based on growth
+              p5.image(cropImage, i * this.tileSize + (this.tileSize - size) / 2, j * this.tileSize + (this.tileSize - size) / 2, size, size);
+            } else {
+              // Placeholder orange dot for crop growth
+              p5.fill(crop.growthStage === 2 ? 255 : 165, crop.growthStage === 2 ? 165 : 0, 0);
+              p5.ellipse(i * this.tileSize + this.tileSize / 2, j * this.tileSize + this.tileSize / 2, this.tileSize / 2);
+            }
           }
         }
       }
@@ -103,7 +110,8 @@ export default class Simulation extends Component {
         this.grid[i][j] = {
           type: this.selectedCrop,
           growthStage: 0, // Start as a seed
-          growthProgress: 0 // Initial growth progress
+          growthProgress: 0, // Initial growth progress
+          timePlanted: p5.millis() // Record the time the crop was planted
         };
       } else if (this.currentAction === "harvest" && crop && crop.growthStage === 2) {
         // Harvest only if the crop is fully grown
