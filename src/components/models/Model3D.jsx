@@ -69,7 +69,7 @@ const Model3D = ({ modelPath, initialScale, cameraPosition }) => {
     const animate = () => {
       requestAnimationFrame(animate);
       renderer.render(scene, camera);
-      scene.rotation.y += 0.002;
+      scene.rotation.y += 0.005;
     }
     animate();
 

@@ -133,21 +133,20 @@ export const modelsData = [
     },
     // Onions
     {
-        id: 'onions',
         name: 'Onions',
         category: 'onions',
         cover:'/assets/covers/onion.webp',
-        description: 'This is a list of the 50 spacecraft missions (including unsuccessful ones) relating to the planet Mars, such as orbiters and rovers.',
-        launches_by_decade: [
-            { decade: "1960s", launches: 12 },
-            { decade: "1970s", launches: 11 },
-            { decade: "1980s", launches: 2 },
-            { decade: "1990s", launches: 6 },
-            { decade: "2000s", launches: 8 },
-            { decade: "2010s", launches: 6 },
-            { decade: "2020s", launches: 3 }
-        ],
-        onions: [
+        model3d: "/assets/models/Onion.glb",
+        children: [
+            {
+                id: "onions",
+                name: "Onions",
+                category: "onions",
+                model3d: "/assets/models/Onion.glb",
+                characteristics: [
+
+                ]
+            }
         ],
         details: {
             scientificName: "Allium cepa",
