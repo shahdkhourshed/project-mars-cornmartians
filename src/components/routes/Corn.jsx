@@ -23,14 +23,14 @@ const CornPage = () => {
           flex-col
           justify-end
           text-xl
-        text-white
+          text-white
           xl:flex-row-reverse
       ">
       <Model3D key={corn.model3d} modelPath={corn.model3d} initialScale={0.1} cameraPosition={[0, 0, 180]} /> 
       <Characteristics data={chars} />
       </div>
       <BackToTop />
-      </div>
+    </div>
       
   )
 }

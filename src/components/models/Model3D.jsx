@@ -122,9 +122,3 @@ Model3D.propTypes = {
 
 export default Model3D;
 
-
-
-
-
-
-

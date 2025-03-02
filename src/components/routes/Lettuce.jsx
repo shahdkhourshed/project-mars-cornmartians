@@ -1,19 +1,35 @@
-import { useContext } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
-import { ModelsDataContext } from "../models/modelsContext";
+import Characteristics from "../Characteristics";
+import { useFetchData } from "../hooks/useFetchData";
+import Model3D from "../models/Model3D";
 
-const Lettuce = () => {
-  const modelsData = useContext(ModelsDataContext);
-  const lettuceCategory = modelsData.find(model => model.category === 'lettuce');
-  const location = useLocation();
+const LettucePage = () => {
+  const lettuce = useFetchData('lettuce', "", 'lettuce');
+  const chars = lettuce.characteristics;
+
+  if (!lettuce) {
+    return <div>Lettuce not found</div>
+  }
 
   return (
-    <div className="w-full text-center">
+    <div className="flex flex-col w-full">
       <p className='font-bold text-[4rem] text-white text-center blink__word select-none my-10'>
         Lettuce
       </p>
+      <div
+          className="
+            flex
+            flex-col
+            justify-end
+            text-xl
+            text-white
+            xl:flex-row-reverse
+        ">
+        <Model3D key={lettuce.model3d} modelPath={lettuce.model3d} initialScale={0.1} cameraPosition={[0, 0, 180]} /> 
+        <Characteristics data={chars} />
+      </div>
     </div>
-  );
-};
-export default Lettuce;
+  )
+}
+
+export default LettucePage;
 

@@ -4,7 +4,7 @@ export const modelsData = [
         name: "Corn",
         category: "corn",
         cover: "/assets/covers/corn.webp",
-        model3d: "/assets/models/mars_compressed.glb",
+        model3d: "/assets/models/Corn.glb",
         children: [
             {
                 id: "corn",
@@ -159,11 +159,20 @@ export const modelsData = [
         ]
     },
     //Moons
-    {   id: "lettuce",
-        name: 'Lettuce',
+    {   name: 'Lettuce',
         category: 'lettuce',
         cover: '/assets/covers/lettuce.webp',
+        model3d: "/assets/models/Lettuce.glb",
         children: [
+            {
+                id: "lettuce",
+                name: "Lettuce",
+                category: "lettuce",
+                model3d: "/assets/models/Corn.glb",
+                characteristics: [
+
+                ]
+            }
         ],
     },
     // Sweet Potatoes
